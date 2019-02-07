@@ -7,4 +7,4 @@ Oregon State University
 ## Contributors:
 Ben Martin ~ ONID: martinb3
 
-Nathan Crozier ~ ONID: croziern
+Nathan Crozier ~ ONID: croziena
