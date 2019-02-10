@@ -64,6 +64,39 @@ LOCK TABLES `customer` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `inventory_item`
+--
+
+DROP TABLE IF EXISTS `inventory_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `inventory_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL,
+  `serial` int(11) DEFAULT NULL,
+  `buying_price` float NOT NULL,
+  `shipmentID` int(11) NOT NULL,
+  `transactionID` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pid` (`pid`),
+  KEY `shipmentID` (`shipmentID`),
+  KEY `transactionID` (`transactionID`),
+  CONSTRAINT `inventory_item_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `product` (`id`),
+  CONSTRAINT `inventory_item_ibfk_2` FOREIGN KEY (`shipmentID`) REFERENCES `shipment` (`id`),
+  CONSTRAINT `inventory_item_ibfk_3` FOREIGN KEY (`transactionID`) REFERENCES `transaction` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventory_item`
+--
+
+LOCK TABLES `inventory_item` WRITE;
+/*!40000 ALTER TABLE `inventory_item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inventory_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product`
 --
 
@@ -176,4 +209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-09 19:45:01
+-- Dump completed on 2019-02-09 19:50:13
