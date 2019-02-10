@@ -39,6 +39,31 @@ LOCK TABLES `category` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `phone_number` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `shipment`
 --
 
@@ -63,6 +88,34 @@ LOCK TABLES `shipment` WRITE;
 /*!40000 ALTER TABLE `shipment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `shipment` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `transaction`
+--
+
+DROP TABLE IF EXISTS `transaction`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `transaction` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer` int(11) DEFAULT NULL,
+  `date` date NOT NULL,
+  `payment_method` varchar(10) NOT NULL,
+  `payment_total` float NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `customer` (`customer`),
+  CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customer` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transaction`
+--
+
+LOCK TABLES `transaction` WRITE;
+/*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -73,4 +126,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-09 18:16:14
+-- Dump completed on 2019-02-09 18:28:54
