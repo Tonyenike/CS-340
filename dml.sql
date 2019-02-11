@@ -1,7 +1,3 @@
--- These are some Database Manipulation queries for a partially implemented Project Website
--- Your submission should contain ALL the queries required to implement ALL the
--- functionalities listed in the Project Specs.
-
 -- get information for all customers.
 SELECT * FROM `customer`;
 
