@@ -65,7 +65,7 @@ SELECT * FROM `product` WHERE `selling_price` <= :maxPrice AND `selling_price` >
 -- filter transactions by customer ID
 SELECT * FROM `transaction` WHERE `cid` = :cidInput;
 
--- filter transaction by customer ID and date
+-- filter transaction by date
 SELECT * FROM `transaction` WHERE `DATE` >= :minDate AND `date` <= :maxDate;
 
 -- filter transaction by customer ID and date
