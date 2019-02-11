@@ -56,5 +56,17 @@ INSERT INTO `inventory_item` (`pid`, `serial`, `buying_price`, `shipmentID`, `tr
 -- add a new category
 INSERT INTO `category` (`name`) VALUES (:nameInput);
 
--- add a new entry to the product category table 
+-- add a new entry to the product category table
 INSERT INTO `product_category` (`cid`, `pid`) VALUES (:cidInput, :pidInput);
+
+-- filter products by price
+SELECT * FROM `product` WHERE `selling_price` <= :maxPrice AND `selling_price` >= :minPrice;
+
+-- filter transactions by customer ID
+SELECT * FROM `transaction` WHERE `cid` = :cidInput;
+
+-- filter transaction by customer ID and date
+SELECT * FROM `transaction` WHERE `DATE` >= :minDate AND `date` <= :maxDate;
+
+-- filter transaction by customer ID and date
+SELECT * FROM `transaction` WHERE `cid` = :cidInput AND `date` >= :minDate AND `date` <= :maxDate;
