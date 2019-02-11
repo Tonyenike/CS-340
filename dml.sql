@@ -3,55 +3,58 @@
 -- functionalities listed in the Project Specs.
 
 -- get information for all customers.
-SELECT * FROM customer;
+SELECT * FROM `customer`;
 
 -- get all information for all transactions
-SELECT * FROM tranaction;
+SELECT * FROM `tranaction`;
 
 -- get all information for all shipments
-SELECT * FROM shipment;
+SELECT * FROM `shipment`;
 
 -- get all information for all products
-SELECT * FROM product;
+SELECT * FROM `product`;
 
 -- get information for every inventory item
-SELECT * FROM inventory_item;
+SELECT * FROM `inventory_item`;
 
 -- get information for all categories
-SELECT * FROM category;
+SELECT * FROM `category`;
 
 -- get information for a customer by id
-SELECT * FROM customer WHERE id = :customer_id_selected_from_page;
+SELECT * FROM `customer` WHERE `id` = :customer_id_selected_from_page;
 
 -- get information for a tranaction by id
-SELECT * FROM tranaction WHERE id = :transaction_id_selected_from_page;
+SELECT * FROM `tranaction` WHERE `id` = :transaction_id_selected_from_page;
 
 -- get information for a shipment by id
-SELECT * FROM shipment WHERE id = :shipment_id_selected_from_page;
+SELECT * FROM `shipment` WHERE `id` = :shipment_id_selected_from_page;
 
 -- get information for a product by id
-SELECT * FROM product WHERE id = :product_id_selected_from_page;
+SELECT * FROM `product` WHERE `id` = :product_id_selected_from_page;
 
 -- get information for a inventory_item by id
-SELECT * FROM inventory_item WHERE id = :item_id_selected_from_page;
+SELECT * FROM `inventory_item` WHERE `id` = :item_id_selected_from_page;
 
 -- get information for a category by id
-SELECT * FROM category WHERE id = :category_id_selected_from_page;
+SELECT * FROM `category` WHERE id = :category_id_selected_from_page;
 
 -- add a new customer
-INSERT INTO customer (fname, lname, phonenumber) VALUES (:fnameInput, :lnameInput, :phoneInput);
+INSERT INTO `customer` (`fname`, `lname`, `phonenumber`) VALUES (:fnameInput, :lnameInput, :phoneInput);
 
 -- add a new transaction
-INSERT INTO transaction (customer, `date`, payment_method, payment_total) VALUES (:customerInput, :dateInput, :methodInput, :totalInput);
+INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (:customerInput, :dateInput, :methodInput, :totalInput);
 
 -- add a new shipment
-INSERT INTO shipment (supplier_name, shipping_service_name, `date`, damaged) VALUES (:supplierInput, :serviceInput, :dateInput, :damagedInput);
+INSERT INTO `shipment` (`supplier_name`, `shipping_service_name`, `date`, `damaged`) VALUES (:supplierInput, :serviceInput, :dateInput, :damagedInput);
 
 -- add a new product
-INSERT INTO product (name, selling_price) VALUES (:nameInput, :priceInput);
+INSERT INTO `product` (`name`, `selling_price`) VALUES (:nameInput, :priceInput);
 
 -- add a new item
-INSERT INTO inventory_item (pid, serial, buying_price, shipmentID, transactionID) VALUES (:pidInput, :serialInput, :priceInput, :shipmentInput, :transactionInput);
+INSERT INTO `inventory_item` (`pid`, `serial`, `buying_price`, `shipmentID`, `transactionID`) VALUES (:pidInput, :serialInput, :priceInput, :shipmentInput, :transactionInput);
 
 -- add a new category
-INSERT INTO category (name) VALUES (:nameInput);
+INSERT INTO `category` (`name`) VALUES (:nameInput);
+
+-- add a new entry to the product category table 
+INSERT INTO `product_category` (`cid`, `pid`) VALUES (:cidInput, :pidInput);
