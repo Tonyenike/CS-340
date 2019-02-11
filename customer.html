@@ -6,11 +6,32 @@
 	</head>
 	<body>
 
+        <h1> Welcome to S-Mart, valued customer!</h1>
 		<!-- Your page content goes here. -->
+        <div id = "filter-page">
+            Filter by category
+            <input type = "checkbox" class = "catbox">Apparel
+            <input type = "checkbox" class = "catbox">Electronics
+            <input type = "checkbox" class = "catbox">Sports
+        </div>
+        
+        <table id = "products">
+            <thead>
+                <th>Product name</th>
+                <th>Cost</th>
+                <th>Quantity</th>
+                <th>Order amount</th>
+            </thead>
+            <tbody>
+                <tr><td>Air Jordans</td><td>$250</td><td>5</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>Smart Watch</td><td>$799.99</td><td>17</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>iPhone 6</td><td>$399.99</td><td>6</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>Air Zoom Pegasus</td><td>$180</td><td>2</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>iPhone 6s</td><td>$499.99</td><td>4</td><td><input type = "textbox" value = "0"></td></tr>
+            </tbody>
+        </table>
         <div id = "button-opts">
-            <button id = "b1">View available products</button>
-            <button id = "b2">Make an order</button>
-            
+            <button id = "order">Order selected products</button>
         </div>
 	</body>
 </html>
