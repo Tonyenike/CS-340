@@ -11,31 +11,31 @@ SELECT * FROM tranaction;
 -- get all information for all shipments
 SELECT * FROM shipment;
 
--- get all information for all products.
+-- get all information for all products
 SELECT * FROM product;
 
--- get information for every inventory item.
+-- get information for every inventory item
 SELECT * FROM inventory_item;
 
--- get information for all categories.
+-- get information for all categories
 SELECT * FROM category;
 
--- get information for a customer by id.
+-- get information for a customer by id
 SELECT * FROM customer WHERE id = :customer_id_selected_from_page;
 
--- get information for a tranaction by id.
+-- get information for a tranaction by id
 SELECT * FROM tranaction WHERE id = :transaction_id_selected_from_page;
 
--- get information for a shipment by id.
+-- get information for a shipment by id
 SELECT * FROM shipment WHERE id = :shipment_id_selected_from_page;
 
--- get information for a product by id.
+-- get information for a product by id
 SELECT * FROM product WHERE id = :product_id_selected_from_page;
 
--- get information for a inventory_item by id.
+-- get information for a inventory_item by id
 SELECT * FROM inventory_item WHERE id = :item_id_selected_from_page;
 
--- get information for a category by id.
+-- get information for a category by id
 SELECT * FROM category WHERE id = :category_id_selected_from_page;
 
 -- add a new customer
@@ -53,5 +53,5 @@ INSERT INTO product (name, selling_price) VALUES (:nameInput, :priceInput);
 -- add a new item
 INSERT INTO inventory_item (pid, serial, buying_price, shipmentID, transactionID) VALUES (:pidInput, :serialInput, :priceInput, :shipmentInput, :transactionInput);
 
--- add a new category for an item.
+-- add a new category
 INSERT INTO category (name) VALUES (:nameInput);
