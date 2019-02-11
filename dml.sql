@@ -62,6 +62,10 @@ INSERT INTO `product_category` (`cid`, `pid`) VALUES (:cidInput, :pidInput);
 -- filter products by price
 SELECT * FROM `product` WHERE `selling_price` <= :maxPrice AND `selling_price` >= :minPrice;
 
+-- filter products by name
+SELECT * FROM `product` WHERE `name` = nameInput;
+
+
 -- filter transactions by customer ID
 SELECT * FROM `transaction` WHERE `cid` = :cidInput;
 
