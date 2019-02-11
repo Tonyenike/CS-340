@@ -1,12 +1,144 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Shop smart, shop S-Mart</title>
-	</head>
-	<body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form action="http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php" method="get">
+      <fieldset>
+      <legend>Create Customer</legend>
+      <div>
+      <label for="text">First Name:</label>
+      <input type="text" name="fnameInput" value="">
+      </div>
+      <br>
+      <div>
+      <label for="text">Last Name:</label>
+      <input type="text" name="lnameInput" value="">
+      </div>
+      <br>
+      <div>
+      <label for="text">Phone Number:</label>
+      <input type="text" name="phoneInput" value="">
+      </div>
+      <br>
+      <div>
+      <label><input type="submit"  value="Submit"></label>
+      </div>
+      </fieldset>
+      <form action="http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php" method="get">
+        <fieldset>
+        <legend>Create Transaction</legend>
+        <div>
+        <label for="text">Customer ID:</label>
+        <input type="text" name="customerInput" value="">
+        </div>
+        <br>
+        <div>
+        <label for="text">Date:</label>
+        <input type="text" name="dateInput" value="">
+        </div>
+        <br>
+        <div>
+        <label for="text">Payment Method:</label>
+        <input type="text" name="methodInput" value="">
+        </div>
+        <br>
+        <div>
+        <label for="text">Total Input:</label>
+        <input type="text" name="totalInput" value="">
+        </div>
+        <br>
+        <div>
+        <label><input type="submit"  value="Submit"></label>
+        </div>
+        </fieldset>
+        <form action="http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php" method="get">
+          <fieldset>
+          <legend>Create Shipment</legend>
+          <div>
+          <label for="text">Supplier:</label>
+          <input type="text" name="supplierInput" value="">
+          </div>
+          <br>
+          <div>
+          <label for="text">Date:</label>
+          <input type="text" name="dateInput" value="">
+          </div>
+          <br>
+          <div>
+          <label for="text">Shipping Method:</label>
+          <input type="text" name="methodInput" value="">
+          </div>
+          <br>
+          <div>
+          <label for="text">Damaged:</label>
+          <input type="text" name="damagedInput" value="">
+          </div>
+          <br>
+          <div>
+          <label><input type="submit"  value="Submit"></label>
+          </div>
+          </fieldset>
+          <form action="http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php" method="get">
+            <fieldset>
+            <legend>Create Inventory Item</legend>
+            <div>
+            <label for="text">Product ID:</label>
+            <input type="text" name="pidInput" value="">
+            </div>
+            <br>
+            <div>
+            <label for="text">Serial#:</label>
+            <input type="text" name="serialInput" value="">
+            </div>
+            <br>
+            <div>
+            <label for="text">Price:</label>
+            <input type="text" name="priceInput" value="">
+            </div>
+            <br>
+            <div>
+            <label for="text">Transaction:</label>
+            <input type="text" name="transactionInput" value="">
+            </div>
+            <br>
+            <div>
+            <label><input type="submit"  value="Submit"></label>
+            </div>
+            </fieldset>
 
-		<!-- Your page content goes here. -->
-        Employee page!
-	</body>
+            <form action="http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php" method="get">
+              <fieldset>
+              <legend>Create Category</legend>
+              <div>
+              <label for="text">Category Name:</label>
+              <input type="text" name="nameInput" value="">
+              </div>
+              <br>
+              <div>
+              <label><input type="submit"  value="Submit"></label>
+              </div>
+              </fieldset>
+
+              <form action="http://web.engr.oregonstate.edu/~zhangluy/tools/class-content/form_tests/check_request.php" method="get">
+                <fieldset>
+                <legend>Add Product to Category</legend>
+                <div>
+                <label for="text">Category ID:</label>
+                <input type="text" name="cidInput" value="">
+                </div>
+                <br>
+                <div>
+                <label for="text">Product ID:</label>
+                <input type="text" name="pidInput" value="">
+                </div>
+                <br>
+                <div>
+                <label><input type="submit"  value="Submit"></label>
+                </div>
+                </fieldset>
+    </form>
+  </body>
 </html>
