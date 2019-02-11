@@ -48,10 +48,10 @@ INSERT INTO transaction (customer, `date`, payment_method, payment_total) VALUES
 INSERT INTO shipment (supplier_name, shipping_service_name, `date`, damaged) VALUES (:supplierInput, :serviceInput, :dateInput, :damagedInput);
 
 -- add a new product
-INSERT INTO shipment (name, selling_price) VALUES (:nameInput, :priceInput);
+INSERT INTO product (name, selling_price) VALUES (:nameInput, :priceInput);
 
 -- add a new item
-INSERT INTO shipment (pid, serial, buying_price, shipmentID, transactionID) VALUES (:pidInput, :serialInput, :priceInput, :shipmentInput, :transactionInput);
+INSERT INTO inventory_item (pid, serial, buying_price, shipmentID, transactionID) VALUES (:pidInput, :serialInput, :priceInput, :shipmentInput, :transactionInput);
 
 -- add a new category for an item.
-INSERT INTO shipment (name) VALUES (:nameInput);
+INSERT INTO category (name) VALUES (:nameInput);
