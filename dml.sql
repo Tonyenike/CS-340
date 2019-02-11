@@ -2,7 +2,7 @@
 SELECT * FROM `customer`;
 
 -- get all information for all transactions
-SELECT * FROM `tranaction`;
+SELECT * FROM `transaction`;
 
 -- get all information for all shipments
 SELECT * FROM `shipment`;
@@ -19,8 +19,8 @@ SELECT * FROM `category`;
 -- get information for a customer by id
 SELECT * FROM `customer` WHERE `id` = :customer_id_selected_from_page;
 
--- get information for a tranaction by id
-SELECT * FROM `tranaction` WHERE `id` = :transaction_id_selected_from_page;
+-- get information for a transaction by id
+SELECT * FROM `transaction` WHERE `id` = :transaction_id_selected_from_page;
 
 -- get information for a shipment by id
 SELECT * FROM `shipment` WHERE `id` = :shipment_id_selected_from_page;
