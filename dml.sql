@@ -78,3 +78,30 @@ DELETE FROM `inventory_item` WHERE `id` = :idInput;
 
 -- delete a category by category id
 DELETE FROM `category` WHERE id = :idInput;
+
+-- Update a row in the INVENTORY_ITEM table
+UPDATE inventory_item SET pid = :pid_of_choice, serial = :serial_of_choice, buying_price = :buying_price_of_choice,
+shipmentID = :shipmentID_of_choice, transactionID = :transactionID_of_choice WHERE id = :id_to_change;
+
+-- Update a row in the CUSTOMER table
+UPDATE customer SET fname = :fname_of_choice, lname = :lname_of_choice, phone_number = :phone_number_of_choice WHERE id = :id_to_change;
+
+-- Update a row in the TRANSACTION table
+UPDATE transaction SET customer = :customer_of_choice, date = :date_of_choice, 
+payment_method = :payment_method_of_choice, payment_total = :payment_total_of_choice WHERE id = :id_to_change;
+
+
+-- Update a row in the SHIPMENT table
+UPDATE shipment SET supplier_name = :supplier_name_of_choice, shipping_service_name = :shipping_service_name_of_choice,
+date = :date_of_choice, damaged = :damaged_of_choice WHERE id = :id_to_change;
+
+-- Update a row in the PRODUCT table
+UPDATE product SET name = :name_of_choice, selling_price = :selling_price_of_choice WHERE id = :id_to_change;
+
+-- Update a row in the CATEGORY table
+UPDATE category SET name = :name_of_choice WHERE id = :id_to_change;
+
+-- Note that we don't need to update the CATEGORY/PRODUCT relationship table, we only need to add / remove entries in this table.
+
+
+
