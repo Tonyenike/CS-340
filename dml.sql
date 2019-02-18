@@ -71,7 +71,7 @@ DELETE FROM `customer` WHERE `id` = :idInput;
 DELETE FROM `shipment` WHERE `id` = :idInput;
 
 -- delete a product by product id
-DELETE FROM `product` WHERE `id` = :inInput;
+DELETE FROM `product` WHERE `id` = :idInput;
 
 -- delete an inventory_item by item id.
 DELETE FROM `inventory_item` WHERE `id` = :idInput;
