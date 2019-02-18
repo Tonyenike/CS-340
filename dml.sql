@@ -61,12 +61,20 @@ SELECT * FROM `product` WHERE `selling_price` <= :maxPrice AND `selling_price` >
 -- filter products by name
 SELECT * FROM `product` WHERE `name` = nameInput;
 
+-- delete transaction by transaction ID
+DELETE FROM `transaction` WHERE `id` = :idInput;
 
--- filter transactions by customer ID
-SELECT * FROM `transaction` WHERE `cid` = :cidInput;
+-- delete customer by customer id
+DELETE FROM `customer` WHERE `id` = :idInput;
 
--- filter transaction by date
-SELECT * FROM `transaction` WHERE `DATE` >= :minDate AND `date` <= :maxDate;
+-- delete a shipment shipment id
+DELETE FROM `shipment` WHERE `id` = :idInput;
 
--- filter transaction by customer ID and date
-SELECT * FROM `transaction` WHERE `cid` = :cidInput AND `date` >= :minDate AND `date` <= :maxDate;
+-- delete a product by product id
+DELETE FROM `product` WHERE `id` = :inInput;
+
+-- delete an inventory_item by item id.
+DELETE FROM `inventory_item` WHERE `id` = :idInput;
+
+-- delete a category by category id
+DELETE FROM `category` WHERE id = :idInput;
