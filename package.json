@@ -1,0 +1,27 @@
+{
+  "name": "cs-340",
+  "version": "1.0.0",
+  "description": "S-Mart database",
+  "main": "server.js",
+  "dependencies": {
+    "express-handlebars": "^3.0.2",
+    "express": "^4.16.4",
+    "handlebars": "^4.1.0",
+    "socketio": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "start",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tonyenike/CS-340.git"
+  },
+  "author": "Group 6",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tonyenike/CS-340/issues"
+  },
+  "homepage": "https://github.com/Tonyenike/CS-340#readme"
+}
