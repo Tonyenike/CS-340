@@ -1,314 +1,338 @@
-    <form action="" method="">
-      <fieldset>
+  <form id="addcustomer" action="/addcustomer" method="post">
+    <fieldset>
       <legend>Create Customer</legend>
       <div>
-      <label for="text">First Name:</label>
-      <input type="text" name="fnameInput" value="">
+        <label for="text">First Name:</label>
+        <input type="text" name="fnameInput" value="">
       </div>
-      <br>
+      </br>
       <div>
-      <label for="text">Last Name:</label>
-      <input type="text" name="lnameInput" value="">
+        <label for="text">Last Name:</label>
+        <input type="text" name="lnameInput" value="">
       </div>
-      <br>
+      </br>
       <div>
-      <label for="text">Phone Number:</label>
-      <input type="text" name="phoneInput" value="">
+        <label for="text">Phone Number:</label>
+        <input type="text" name="phoneInput" value="">
       </div>
-      <br>
+      </br>
       <div>
-      <label><input type="submit"  value="Submit"></label>
+        <label><input type="submit" value="Submit"></label>
       </div>
-      </fieldset>
-      <form action="" method="">
-        <fieldset>
-        <legend>Create Transaction</legend>
-        <div>
+    </fieldset>
+  </form>
+
+  <form id="addtransaction" action="/addtransaction" method="post">
+    <fieldset>
+      <legend>Create Transaction</legend>
+      <div>
         <label for="text">Customer ID:</label>
         <input type="text" name="customerInput" value="">
-        </div>
-        <br>
-        <div>
+      </div>
+      </br>
+      <div>
         <label for="text">Date:</label>
         <input type="text" name="dateInput" value="">
-        </div>
-        <br>
-        <div>
+      </div>
+      </br>
+      <div>
         <label for="text">Payment Method:</label>
         <input type="text" name="methodInput" value="">
-        </div>
-        <br>
-        <div>
+      </div>
+      </br>
+      <div>
         <label for="text">Total Input:</label>
         <input type="text" name="totalInput" value="">
-        </div>
-        <br>
-        <div>
-        <label><input type="submit"  value="Submit"></label>
-        </div>
-        </fieldset>
-        <form action="" method="">
-          <fieldset>
-          <legend>Create Shipment</legend>
-          <div>
-          <label for="text">Supplier:</label>
-          <input type="text" name="supplierInput" value="">
-          </div>
-          <br>
-          <div>
-          <label for="text">Date:</label>
-          <input type="text" name="dateInput" value="">
-          </div>
-          <br>
-          <div>
-          <label for="text">Shipping Method:</label>
-          <input type="text" name="methodInput" value="">
-          </div>
-          <br>
-          <div>
-          <label for="text">Damaged:</label>
-          <input type="text" name="damagedInput" value="">
-          </div>
-          <br>
-          <div>
-          <label><input type="submit"  value="Submit"></label>
-          </div>
-          </fieldset>
-          <form action="" method="">
-            <fieldset>
-            <legend>Create Inventory Item</legend>
-            <div>
-            <label for="text">Product ID:</label>
-            <input type="text" name="pidInput" value="">
-            </div>
-            <br>
-            <div>
-            <label for="text">Serial#:</label>
-            <input type="text" name="serialInput" value="">
-            </div>
-            <br>
-            <div>
-            <label for="text">Price:</label>
-            <input type="text" name="priceInput" value="">
-            </div>
-            <br>
-            <div>
-            <label for="text">Transaction:</label>
-            <input type="text" name="transactionInput" value="">
-            </div>
-            <br>
-            <div>
-            <label><input type="submit"  value="Submit"></label>
-            </div>
-            </fieldset>
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-            <form action="" method="">
-              <fieldset>
-              <legend>Create Category</legend>
-              <div>
-              <label for="text">Category Name:</label>
-              <input type="text" name="nameInput" value="">
-              </div>
-              <br>
-              <div>
-              <label><input type="submit"  value="Submit"></label>
-              </div>
-              </fieldset>
+  <form id="addshipment" action="/addshipment" method="post">
+    <fieldset>
+      <legend>Create Shipment</legend>
+      <div>
+        <label for="text">Supplier:</label>
+        <input type="text" name="supplierInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Date:</label>
+        <input type="text" name="dateInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Shipping Method:</label>
+        <input type="text" name="methodInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Damaged:</label>
+        <input type="text" name="damagedInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-              <form action="" method="">
-                <fieldset>
-                <legend>Add Product to Category</legend>
-                <div>
-                <label for="text">Category ID:</label>
-                <input type="text" name="cidInput" value="">
-                </div>
-                <br>
-                <div>
-                <label for="text">Product ID:</label>
-                <input type="text" name="pidInput" value="">
-                </div>
-                <br>
-                <div>
-                <label><input type="submit"  value="Submit"></label>
-                </div>
-                </fieldset>
+  <form id="additem" action="/additem" method="post">
+    <fieldset>
+      <legend>Create Inventory Item</legend>
+      <div>
+        <label for="text">Product ID:</label>
+        <input type="text" name="pidInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Serial#:</label>
+        <input type="text" name="serialInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Price:</label>
+        <input type="text" name="priceInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Transaction:</label>
+        <input type="text" name="transactionInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-                <form action="" method="">
-                  <fieldset>
-                  <legend>Delete Item By id</legend>
-                  <div>
-                  <label for="text">ID:</label>
-                  <input type="text" name="idInput" value="">
-                  </div>
-                  <br>
-                  <label><input type="submit"  value="Submit"></label>
-                  </div>
-                  </fieldset>
+  <form id="addcategory" action="/addcategory" method="post">
+    <fieldset>
+      <legend>Create Category</legend>
+      <div>
+        <label for="text">Category Name:</label>
+        <input type="text" name="nameInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-                  <form action="" method="">
-                    <fieldset>
-                    <legend>Delete Product By id</legend>
-                    <div>
-                    <label for="text">ID:</label>
-                    <input type="text" name="idInput" value="">
-                    </div>
-                    <br>
-                    <label><input type="submit"  value="Submit"></label>
-                    </div>
-                    </fieldset>
+  <form id="addtocategory" action="/addtocategory" method="post">
+    <fieldset>
+      <legend>Add Product to Category</legend>
+      <div>
+        <label for="text">Category ID:</label>
+        <input type="text" name="cidInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Product ID:</label>
+        <input type="text" name="pidInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-                    <form action="" method="">
-                      <fieldset>
-                      <legend>Delete Transaction By id</legend>
-                      <div>
-                      <label for="text">ID:</label>
-                      <input type="text" name="idInput" value="">
-                      </div>
-                      <br>
-                      <label><input type="submit"  value="Submit"></label>
-                      </div>
-                      </fieldset>
+  <form id="deleteitem" action="/deleteitem" method="post">
+    <fieldset>
+      <legend>Delete Item By id</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idInput" value="">
+      </div>
+      </br>
+      <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-                <form action="" method="">
-                  <fieldset>
-                  <legend>Delete Shipment By id</legend>
-                  <div>
-                  <label for="text">ID:</label>
-                  <input type="text" name="idInput" value="">
-                  </div>
-                  <br>
-                  <label><input type="submit"  value="Submit"></label>
-                  </div>
-                  </fieldset>
+  <form id="deleteproduct" action="/deleteproduct" method="post">
+    <fieldset>
+      <legend>Delete Product By id</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idInput" value="">
+      </div>
+      </br>
+      <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-                  <form action="" method="">
-                    <fieldset>
-                    <legend>Delete Category By id</legend>
-                    <div>
-                    <label for="text">ID:</label>
-                    <input type="text" name="idInput" value="">
-                    </div>
-                    <br>
-                    <label><input type="submit"  value="Submit"></label>
-                    </div>
-                    </fieldset>
+  <form action="" method="">
+    <fieldset>
+      <legend>Delete Transaction By id</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idInput" value="">
+      </div>
+      </br>
+      <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-                    <form action="" method="">
-                      <fieldset>
-                      <legend>Update Customer</legend>
-                      <div>
-                      <label for="text">First Name:</label>
-                      <input type="text" name="fnameInput" value="">
-                      </div>
-                      <br>
-                      <div>
-                      <label for="text">Last Name:</label>
-                      <input type="text" name="lnameInput" value="">
-                      </div>
-                      <br>
-                      <div>
-                      <label for="text">Phone Number:</label>
-                      <input type="text" name="phoneInput" value="">
-                      </div>
-                      <br>
-                      <div>
-                      <label><input type="submit"  value="Submit"></label>
-                      </div>
-                      </fieldset>
-                      <form action="" method="">
-                        <fieldset>
-                        <legend>Update Transaction</legend>
-                        <div>
-                        <label for="text">Customer ID:</label>
-                        <input type="text" name="customerInput" value="">
-                        </div>
-                        <br>
-                        <div>
-                        <label for="text">Date:</label>
-                        <input type="text" name="dateInput" value="">
-                        </div>
-                        <br>
-                        <div>
-                        <label for="text">Payment Method:</label>
-                        <input type="text" name="methodInput" value="">
-                        </div>
-                        <br>
-                        <div>
-                        <label for="text">Total Input:</label>
-                        <input type="text" name="totalInput" value="">
-                        </div>
-                        <br>
-                        <div>
-                        <label><input type="submit"  value="Submit"></label>
-                        </div>
-                        </fieldset>
-                        <form action="" method="">
-                          <fieldset>
-                          <legend>Update Shipment</legend>
-                          <div>
-                          <label for="text">Supplier:</label>
-                          <input type="text" name="supplierInput" value="">
-                          </div>
-                          <br>
-                          <div>
-                          <label for="text">Date:</label>
-                          <input type="text" name="dateInput" value="">
-                          </div>
-                          <br>
-                          <div>
-                          <label for="text">Shipping Method:</label>
-                          <input type="text" name="methodInput" value="">
-                          </div>
-                          <br>
-                          <div>
-                          <label for="text">Damaged:</label>
-                          <input type="text" name="damagedInput" value="">
-                          </div>
-                          <br>
-                          <div>
-                          <label><input type="submit"  value="Submit"></label>
-                          </div>
-                          </fieldset>
-                          <form action="" method="">
-                            <fieldset>
-                            <legend>Update Inventory Item</legend>
-                            <div>
-                            <label for="text">Product ID:</label>
-                            <input type="text" name="pidInput" value="">
-                            </div>
-                            <br>
-                            <div>
-                            <label for="text">Serial#:</label>
-                            <input type="text" name="serialInput" value="">
-                            </div>
-                            <br>
-                            <div>
-                            <label for="text">Price:</label>
-                            <input type="text" name="priceInput" value="">
-                            </div>
-                            <br>
-                            <div>
-                            <label for="text">Transaction:</label>
-                            <input type="text" name="transactionInput" value="">
-                            </div>
-                            <br>
-                            <div>
-                            <label><input type="submit"  value="Submit"></label>
-                            </div>
-                            </fieldset>
+  <form id="deleteshipment" action="/deleteshipment" method="post">
+    <fieldset>
+      <legend>Delete Shipment By id</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idInput" value="">
+      </div>
+      </br>
+      <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-                            <form action="" method="">
-                              <fieldset>
-                              <legend>Update Category</legend>
-                              <div>
-                              <label for="text">Category Name:</label>
-                              <input type="text" name="nameInput" value="">
-                              </div>
-                              <br>
-                              <div>
-                              <label><input type="submit"  value="Submit"></label>
-                              </div>
-                              </fieldset>
+  <form id="deletecategory" action="/deletecategory" method="post">
+    <fieldset>
+      <legend>Delete Category By id</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idInput" value="">
+      </div>
+      </br>
+      <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
+  <form id="updatecustomer" action="/updatecustomer" method="post">
+    <fieldset>
+      <legend>Update Customer</legend>
+      <div>
+        <label for="text">First Name:</label>
+        <input type="text" name="fnameInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Last Name:</label>
+        <input type="text" name="lnameInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Phone Number:</label>
+        <input type="text" name="phoneInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
 
-    </form>
+  <form id="updatetransaction" action="/updatetransaction" method="post">
+    <fieldset>
+      <legend>Update Transaction</legend>
+      <div>
+        <label for="text">Customer ID:</label>
+        <input type="text" name="customerInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Date:</label>
+        <input type="text" name="dateInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Payment Method:</label>
+        <input type="text" name="methodInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Total Input:</label>
+        <input type="text" name="totalInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
+
+  <form id="updateshipment" action="/updateshipment" method="post">
+    <fieldset>
+      <legend>Update Shipment</legend>
+      <div>
+        <label for="text">Supplier:</label>
+        <input type="text" name="supplierInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Date:</label>
+        <input type="text" name="dateInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Shipping Method:</label>
+        <input type="text" name="methodInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Damaged:</label>
+        <input type="text" name="damagedInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
+
+  <form id="updateitem" action="/updateitem" method="post">
+    <fieldset>
+      <legend>Update Inventory Item</legend>
+      <div>
+        <label for="text">Product ID:</label>
+        <input type="text" name="pidInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Serial#:</label>
+        <input type="text" name="serialInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Price:</label>
+        <input type="text" name="priceInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Transaction:</label>
+        <input type="text" name="transactionInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
+
+  <form id="updatecategory" action="/updatecategory" method="post">
+    <fieldset>
+      <legend>Update Category</legend>
+      <div>
+        <label for="text">Category ID:</label>
+        <input type="text" name="idInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Category Name:</label>
+        <input type="text" name="nameInput" value="">
+      </div>
+      </br>
+      <div>
+        <label><input type="submit" value="Submit"></label>
+      </div>
+    </fieldset>
+  </form>
