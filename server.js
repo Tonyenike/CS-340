@@ -25,10 +25,12 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var handlebars = require('express-handlebars');
+var func = require('./engine.js'); // This lets us use the functions/variables that we have built on the back end.
 var url = require('url');
 
 var port = 4200; // When running the server, type "localhost:[port-number]" in your address bar to see the webpage.
 
+var engineObj = new func();
 
 /*
  *  Create socket connection to the client side JS. 
@@ -37,6 +39,7 @@ var port = 4200; // When running the server, type "localhost:[port-number]" in y
 
 var io = require('socket.io').listen(app.listen(port, function() {
     console.log('== Server is listening on port', port);
+    console.log('Querytext10 is', engineObj.queryText10);
 }));
 
 /*
