@@ -1,0 +1,67 @@
+        <h1> Welcome to S-Mart, valued customer!</h1>
+		<!-- Your page content goes here. -->
+        <div id = "content">
+        <div id = "filter-pages">
+        <div id = "category-page">
+            Filter by category
+            <input type = "checkbox" value = "1" class = "catbox">Apparel
+            <input type = "checkbox" value = "1" class = "catbox">Electronics
+            <input type = "checkbox" value = "1" class = "catbox">Sports
+        </div>
+        <div id = "search-page">
+            Search for product by name
+            <input type = "textbox" id = "namesearch">
+            <input type = "submit">
+        </div>
+
+        <div id = "money-page">
+            Limit the price range
+            <div id = "money-min">
+                <input type = "checkbox" id = "min-check">Minimum price:
+                <input type = "textbox" id = "min-value" value = "00.00">
+            </div>
+            <div id = "money-max">
+                <input type = "checkbox" id = "max-check">Maximum price:
+                <input type = "textbox" id = "max-value" value = "00.00">
+            </div>
+        </div>
+        </div>
+
+        <table id = "products">
+            <thead>
+                <th>Product name</th>
+                <th>Cost</th>
+                <th>Quantity</th>
+                <th>Order amount</th>
+            </thead>
+            <tbody>
+                <tr><td>Air Jordans</td><td>$250</td><td>5</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>Smart Watch</td><td>$799.99</td><td>17</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>iPhone 6</td><td>$399.99</td><td>6</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>Air Zoom Pegasus</td><td>$180</td><td>2</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>iPhone 6s</td><td>$499.99</td><td>4</td><td><input type = "textbox" value = "0"></td></tr>
+            </tbody>
+        </table>
+        <div id = "button-opts">
+            <div id = "payment-wrapper">
+            Payment method:
+            <select id = "payment-method">
+                <option>Card</option>
+                <option>Cash</option>
+                <option>Check</option>
+            </select>
+            </div>
+            <div id = "customer-info">
+            OPTIONAL: enter your info:
+            <div id = "custuff">
+            First name:
+            <input type = "textbox" id = "fname">                   
+            Last name:
+            <input type = "textbox" id = "lname">
+            Phone number:
+            <input type = "textbox" id = "pnumber">
+            </div>
+            </div>                 
+            <button id = "order">Order selected products</button>
+        </div>
+        </div>
