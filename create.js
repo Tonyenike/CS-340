@@ -2,7 +2,6 @@ module.exports = function() {
   var express = require('express');
   var router = express.Router();
 
-
   // add a new customer
   // VALUES (:fnameInput, :lnameInput, :phoneInput)";
   var queryTextCreateCustomer = "INSERT INTO `customer` (`fname`, `lname`, `phone_number`) VALUES (?, ?, ?)";
@@ -13,7 +12,7 @@ module.exports = function() {
 
   // add a new shipment
   // VALUES (:supplierInput, :serviceInput, :dateInput, :damagedInput)";
-  var queryTextCreateShipment = "INSERT INTO `shipment` (`supplier_name`, `shipping_service_name`, `date`, `damaged`) VALUES (?, ?, ?, ?";
+  var queryTextCreateShipment = "INSERT INTO `shipment` (`supplier_name`, `shipping_service_name`, `date`, `damaged`) VALUES (?, ?, ?, ?)";
 
   // add a new product
   // VALUES (:nameInput, :priceInput)";
@@ -21,7 +20,7 @@ module.exports = function() {
 
   // add a new item
   // VALUES (:pidInput, :serialInput, :priceInput, :shipmentInput, :transactionInput)";
-  var queryTextCreateItem = "INSERT INTO `inventory_item` (`pid`, `serial`, `buying_price`, `shipmentID`, `transactionID`) VALUES (?, ?, ?, ?, ?)";
+  var queryTextCreateItem = "INSERT INTO `inventory_item` (`pid`, `serial`, `buying_price`, `shipmentID`, `transactionID`) VALUES (?, ?, ?, ?, NULL)";
 
   // add a new category
   // VALUES (:nameInput)";
@@ -86,7 +85,7 @@ module.exports = function() {
 
   router.post('/createItem', function(req, res) {
     var mysql = req.app.get('mysql');
-    var inserts = [req.body.pidInput, req.body.serialInput, req.body.priceInput, req.body.shipmentInput, req.body.transactionInput];
+    var inserts = [req.body.pidInput, req.body.serialInput, req.body.priceInput, req.body.shipmentInput];
     sql = mysql.pool.query(queryTextCreateItem, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
@@ -124,11 +123,6 @@ module.exports = function() {
     });
   });
 
-  
-   router.get('/', function(req, res){
-            var context = {};
-            res.render('employee', context);
-            });
 
   return router;
 }();
