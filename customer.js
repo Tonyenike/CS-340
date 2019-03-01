@@ -21,7 +21,7 @@ module.exports = function(){
     }
 
     function getProducts(res, mysql, context, complete){
-        var q = YOTE.queryText6;
+        var q = YOTE.queryText4;
         mysql.pool.query(q, function(error, results, fields){
                 if(error){
                 res.write(JSON.stringify(error));
@@ -36,11 +36,15 @@ module.exports = function(){
 
     router.get('/', function(req, res){
             var context = {};
+            var qs = 0;
             var mysql = req.app.get('mysql');
             getCategories(res, mysql, context, complete);
             getProducts(res, mysql, context, complete);
             function complete(){
-                res.render('customer', context);
+                qs = qs + 1;
+\               if(qs >= 2){
+                    res.render('customer', context);
+                }
             }
             });
 
