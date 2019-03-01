@@ -1,3 +1,8 @@
+module.exports = function(){
+    var express = require('express');
+    var router = express.Router();
+    }
+
 // add a new customer
 // VALUES (:fnameInput, :lnameInput, :phoneInput)";
 var queryTextCreateCustomer = "INSERT INTO `customer` (`fname`, `lname`, `phonenumber`) VALUES (?, ?, ?)";
