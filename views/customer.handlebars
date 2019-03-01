@@ -4,9 +4,9 @@
         <div id = "filter-pages">
         <div id = "category-page">
             Filter by category
-            <input type = "checkbox" value = "1" class = "catbox">Apparel
-            <input type = "checkbox" value = "1" class = "catbox">Electronics
-            <input type = "checkbox" value = "1" class = "catbox">Sports
+            {{# each categories}}
+            <input type = "checkbox" value = "1" class = "catbox">{{name}}
+            {{/each}}
         </div>
         <div id = "search-page">
             Search for product by name
