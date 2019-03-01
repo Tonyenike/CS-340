@@ -35,6 +35,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use('/', express.static('public'));
 app.use('/customer', require('./customer.js'));
 app.use('/employee', require('./employee.js'));
+app.use('/create', require('./create.js'));
 
 var url = require('url');
 
