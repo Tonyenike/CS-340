@@ -26,6 +26,13 @@ var app = express();
 var server = require('http').Server(app);
 var handlebars = require('express-handlebars');
 var func = require('./engine.js'); // This lets us use the functions/variables that we have built on the back end.
+var mysql = require('./dbcon.js');
+var bodyParser = require('body-parser');
+app.set('mysql', mysql);
+app.use(bodyParser.urlencoded({extended:true}));
+
+
+
 var url = require('url');
 
 
@@ -71,7 +78,8 @@ app.get('/employee', function(req, res) {
 });
 
 app.get('/customer', function(req, res) {
-	context = {style: "./customer.css"};
+	context = {style: "./customer.css",
+               script: "./customer.js"};
     	res.status(200).render('customer.handlebars', context);
 });
 

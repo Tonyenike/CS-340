@@ -5,7 +5,7 @@ var router = express.Router();
 var YEET  = require('./engine.js');
 
     function getCategories(res, mysql, context){
-    mysql.pool.query(YEET.QueryText6, function(error, results, fields){
+    mysql.pool.query(YEET.queryText6, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
             res.end();
