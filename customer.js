@@ -1,5 +1,7 @@
 // customer.js stuff here.
 
+module.exports = function(){
+
 var express = require('express');
 var router = express.Router();
 var YEET  = require('./engine.js');
@@ -21,8 +23,9 @@ router.get('/customer', function(req, res){
     var callbackCount = 0;
     var context = {};
     cotext.style = "customer.css";
-    context.script = "customer.js";
     var mysql = req.app.get('mysql');
     getCategories(res, mysql, context);
-    res.render('/customer.handlebars', context);
+    res.render('customer.handlebars', context);
 });
+
+}

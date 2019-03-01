@@ -30,7 +30,8 @@ var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 app.set('mysql', mysql);
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.use('/customer', require('./customer.js'));
+app.use('/employee', require('./employee.js'));
 
 
 var url = require('url');
@@ -71,17 +72,6 @@ app.get('/', function(req, res) {
  *   Load each of the two UI pages if the user requests it.
  */
 
-
-app.get('/employee', function(req, res) {
-	context = {style: "./employee.css"};
-    	res.status(200).render('employee.handlebars', context);
-});
-
-app.get('/customer', function(req, res) {
-	context = {style: "./customer.css",
-               script: "./customer.js"};
-    	res.status(200).render('customer.handlebars', context);
-});
 
 /*
 *   Use the public folder for styling assets and javascript.

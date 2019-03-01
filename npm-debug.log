@@ -1,7 +1,7 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/usr/bin/node', '/bin/npm', 'start' ]
 2 info using npm@3.10.10
-3 info using node@v6.10.2
+3 info using node@v6.16.0
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info lifecycle cs-340@1.0.0~prestart: cs-340@1.0.0
 6 silly lifecycle cs-340@1.0.0~prestart: no script for prestart, continuing
@@ -20,13 +20,13 @@
 14 verbose stack     at ChildProcess.<anonymous> (/usr/lib/node_modules/npm/lib/utils/spawn.js:40:14)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at ChildProcess.emit (events.js:191:7)
-14 verbose stack     at maybeClose (internal/child_process.js:886:16)
-14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+14 verbose stack     at maybeClose (internal/child_process.js:920:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)
 15 verbose pkgid cs-340@1.0.0
 16 verbose cwd /nfs/stak/users/martinb3/public_html/CS-340
-17 error Linux 3.10.0-862.14.4.el7.x86_64
+17 error Linux 3.10.0-862.11.6.el7.x86_64
 18 error argv "/usr/bin/node" "/bin/npm" "start"
-19 error node v6.10.2
+19 error node v6.16.0
 20 error npm  v3.10.10
 21 error code ELIFECYCLE
 22 error cs-340@1.0.0 start: `node server.js`
