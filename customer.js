@@ -2,8 +2,6 @@
 
 module.exports = function(){
 
-    console.log("wuss poppin'");
-
     var express = require('express');
     var yote = express();
     var router = express.Router();
@@ -18,8 +16,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
                 }
-                context.cat  = results;
-                console.log(results[0].name);
+                context.cat = results;
                 });
     }
 

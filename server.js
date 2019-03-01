@@ -33,6 +33,7 @@ var bodyParser = require('body-parser');
 app.set('mysql', mysql);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/', express.static('public'));
+app.use('/index', require('./index.js'));
 app.use('/customer', require('./customer.js'));
 app.use('/employee', require('./employee.js'));
 
@@ -53,10 +54,6 @@ var io = require('socket.io').listen(app.listen(port, function() {
     console.log('Querytext6 is', engineObj.queryText6);
 }));
 
-
-app.get('/index', function(req,res){
-    res.status(200).render('index',{});
-});
 
 /*
 *   Use the public folder for styling assets and javascript.
