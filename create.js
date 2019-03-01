@@ -123,5 +123,12 @@ module.exports = function() {
       }
     });
   });
+
+  
+   router.get('/', function(req, res){
+            var context = {};
+            res.render('employee', context);
+            });
+
   return router;
 }();
