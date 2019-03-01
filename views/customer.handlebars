@@ -1,10 +1,11 @@
+<html>
         <h1> Welcome to S-Mart, valued customer!</h1>
 		<!-- Your page content goes here. -->
         <div id = "content">
         <div id = "filter-pages">
         <div id = "category-page">
             Filter by category
-            {{#each categories}}
+            {{#each cat}}
             <input type = "checkbox" value = "1" class = "catbox">{{name}}
             {{/each}}
         </div>
@@ -65,3 +66,4 @@
             <button id = "order">Order selected products</button>
         </div>
         </div>
+</html>

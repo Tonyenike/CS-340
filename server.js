@@ -25,14 +25,16 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var handlebars = require('express-handlebars');
+app.engine('handlebars', handlebars({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 var func = require('./engine.js'); // This lets us use the functions/variables that we have built on the back end.
 var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 app.set('mysql', mysql);
 app.use(bodyParser.urlencoded({extended:true}));
+app.use('/', express.static('public'));
 app.use('/customer', require('./customer.js'));
 app.use('/employee', require('./employee.js'));
-
 
 var url = require('url');
 
@@ -48,42 +50,24 @@ var engineObj = new func();
 
 var io = require('socket.io').listen(app.listen(port, function() {
     console.log('== Server is listening on port', port);
-    console.log('Querytext10 is', engineObj.queryText10);
+    console.log('Querytext6 is', engineObj.queryText6);
 }));
 
-/*
-* Set up handlebars
-*/
 
-app.engine('handlebars', handlebars({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
-
-/*
- *   The main page is set to index.handlebars
- */
-
-app.get('/', function(req, res) {
-	context = {style: "./index.css"};
-    	res.status(200).render('index.handlebars', context);
+app.get('/index', function(req,res){
+    res.status(200).render('index',{});
 });
-
-/*
- *   Load each of the two UI pages if the user requests it.
- */
-
 
 /*
 *   Use the public folder for styling assets and javascript.
 */
 
-app.use(express.static('public'));
 
 /*
 *  If the content that the user requests doesn't exist, send a 404 error.
 */
 
-
-app.get('*', function(req, res) {
-	res.status(404).render('404.handlebars');
+app.use(function(req,res){
+  res.status(404);
+  res.render('404');
 });
