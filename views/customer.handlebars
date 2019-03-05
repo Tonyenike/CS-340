@@ -6,7 +6,7 @@
         <div id = "category-page">
             Filter by category
             {{#each cat}}
-            <input type = "checkbox" value = "1" class = "catbox">{{name}}
+            <input type = "checkbox" id = "{{id}}"  class = "catbox" checked>{{name}}
             {{/each}}
         </div>
         <div id = "search-page">
@@ -26,21 +26,19 @@
                 <input type = "textbox" id = "max-value" value = "00.00">
             </div>
         </div>
+        <button id = "filter-button">Apply filter</button>
         </div>
 
         <table id = "products">
             <thead>
                 <th>Product name</th>
                 <th>Cost</th>
-                <th>Quantity</th>
                 <th>Order amount</th>
             </thead>
             <tbody>
-                <tr><td>Air Jordans</td><td>$250</td><td>5</td><td><input type = "textbox" value = "0"></td></tr>
-                <tr><td>Smart Watch</td><td>$799.99</td><td>17</td><td><input type = "textbox" value = "0"></td></tr>
-                <tr><td>iPhone 6</td><td>$399.99</td><td>6</td><td><input type = "textbox" value = "0"></td></tr>
-                <tr><td>Air Zoom Pegasus</td><td>$180</td><td>2</td><td><input type = "textbox" value = "0"></td></tr>
-                <tr><td>iPhone 6s</td><td>$499.99</td><td>4</td><td><input type = "textbox" value = "0"></td></tr>
+                {{#each products}}
+                <tr><td>{{name}}</td><td>${{selling_price}}</td><td><input type = "textbox" value = "0"></td></tr>
+                {{/each}}
             </tbody>
         </table>
         <div id = "button-opts">

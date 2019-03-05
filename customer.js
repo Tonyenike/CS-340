@@ -32,7 +32,10 @@ module.exports = function(){
                 });
     }
 
+    function applyfilter(){
+        var hoy = document.getElementById("min-check");   
 
+    }
 
     router.get('/', function(req, res){
             var context = {};
@@ -42,7 +45,7 @@ module.exports = function(){
             getProducts(res, mysql, context, complete);
             function complete(){
                 qs = qs + 1;
-\               if(qs >= 2){
+                if(qs >= 2){
                     res.render('customer', context);
                 }
             }
