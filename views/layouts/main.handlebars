@@ -11,6 +11,10 @@
     
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 
+    {{#each jsscripts}}
+    <script src="/static/{{this}}"></script>
+    {{/each}}
+
 </head>
 <body>
 

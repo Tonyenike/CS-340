@@ -59,7 +59,7 @@ this.queryText18 = "INSERT INTO `category` (`name`) VALUES (:nameInput)";
 this.queryText19 = "INSERT INTO `product_category` (`cid`, `pid`) VALUES (:cidInput, :pidInput)";
 
 // filter products by price
-this.queryText20 = "SELECT * FROM `product` WHERE `selling_price` <= :maxPrice AND `selling_price` >= :minPrice";
+this.queryText20 = "SELECT * FROM `product` WHERE `selling_price` <= ? AND `selling_price` >= ?";
 
 // filter products by name
 this.queryText21 = "SELECT * FROM `product` WHERE `name` = nameInput";

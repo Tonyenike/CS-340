@@ -12,21 +12,20 @@
         <div id = "search-page">
             Search for product by name
             <input type = "textbox" id = "namesearch">
-            <input type = "submit">
         </div>
 
         <div id = "money-page">
             Limit the price range
             <div id = "money-min">
-                <input type = "checkbox" id = "min-check">Minimum price:
-                <input type = "textbox" id = "min-value" value = "00.00">
+                <input type = "checkbox" id = "min-check" {{minchecked}}>Minimum price:
+                <input type = "textbox" id = "min-value" value = "{{minval}}">
             </div>
             <div id = "money-max">
-                <input type = "checkbox" id = "max-check">Maximum price:
-                <input type = "textbox" id = "max-value" value = "00.00">
+                <input type = "checkbox" id = "max-check" {{maxchecked}}>Maximum price:
+                <input type = "textbox" id = "max-value" value = "{{maxval}}">
             </div>
         </div>
-        <button id = "filter-button">Apply filter</button>
+        <button id = "filter-button" onclick = "filterproducts()">Apply filters</button>
         </div>
 
         <table id = "products">

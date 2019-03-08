@@ -32,7 +32,7 @@ var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 app.set('mysql', mysql);
 app.use(bodyParser.urlencoded({extended:true}));
-app.use('/', express.static('public'));
+app.use('/static', express.static('public'));
 app.use('/index', require('./index.js'));
 app.use('/customer', require('./customer.js'));
 app.use('/employee', require('./employee.js'));
