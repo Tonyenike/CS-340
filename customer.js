@@ -50,6 +50,11 @@ module.exports = function(){
       }
       else{context.minchecked = "checked";}
       var inserts = [maxv, minv];
+      if (req.params.namebool === "true"){
+            query = YOTE.queryText34;
+            inserts = [maxv, minv, req.params.nameval];
+            context.nameval = req.params.nameval;
+      }
       mysql.pool.query(query, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

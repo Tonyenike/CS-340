@@ -100,6 +100,8 @@ this.queryText32 = "UPDATE product SET name = :name_of_choice, selling_price = :
 
 // update a row in the CATEGORY table
 this.queryText33 = "UPDATE category SET name = :name_of_choice WHERE id = :id_to_change";
+
+this.queryText34 = "SELECT * FROM `product` WHERE `selling_price` <= ? AND `selling_price` >= ? AND `name` = ?";
 }
 }
 
