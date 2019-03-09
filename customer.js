@@ -2,11 +2,25 @@
 
 module.exports = function(){
 
+    var pack = require('./server.js');
+
+    var io = pack[0];
+    var OTHER = pack[1];
+
     var express = require('express');
     var yote = express();
     var router = express.Router();
     var YEET  = require('./engine.js');
     var YOTE = new YEET();
+
+    io.on('connection', function(socket){
+        console.log('A customer has connected');
+        socket.on('products-ordered',function(content){
+            var q = YOTE.queryText14
+            OTHER.pool.query(q, function(error, results, fields){
+            });
+        });
+    });
 
     function getCategories(res, mysql, context, complete){
         var q = YOTE.queryText6;

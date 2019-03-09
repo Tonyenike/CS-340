@@ -36,7 +36,7 @@
             </thead>
             <tbody>
                 {{#each products}}
-                <tr><td>{{name}}</td><td>${{selling_price}}</td><td><input type = "textbox" value = "0"></td></tr>
+                <tr><td>{{name}}</td><td>${{selling_price}}</td><td><input type = "textbox" class = "productnum" id = "product{{id}}"value = "0"></td></tr>
                 {{/each}}
             </tbody>
         </table>
@@ -60,7 +60,7 @@
             <input type = "textbox" id = "pnumber">
             </div>
             </div>                 
-            <button id = "order">Order selected products</button>
+            <button id = "order" onclick = "orderproducts()">Order selected products</button>
         </div>
         </div>
 </html>

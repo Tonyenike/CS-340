@@ -31,7 +31,23 @@ var func = require('./engine.js'); // This lets us use the functions/variables t
 var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 app.set('mysql', mysql);
+
 app.use(bodyParser.urlencoded({extended:true}));
+
+
+var port = 4200; // When running the server, type "localhost:[port-number]" in your address bar to see the webpage.
+
+var io = require('socket.io').listen(app.listen(port, function() {
+    console.log('== Server is listening on port', port);
+}));
+
+
+module.exports = [io, mysql];
+
+/*
+*   Use the public folder for styling assets and javascript.
+*/
+
 app.use('/static', express.static('public'));
 app.use('/index', require('./index.js'));
 app.use('/customer', require('./customer.js'));
@@ -41,7 +57,6 @@ app.use('/', require('./create.js'));
 var url = require('url');
 
 
-var port = 4200; // When running the server, type "localhost:[port-number]" in your address bar to see the webpage.
 
 var engineObj = new func();
 
@@ -50,15 +65,7 @@ var engineObj = new func();
  *  Begin listening on port [port-number].
  */ 
 
-var io = require('socket.io').listen(app.listen(port, function() {
-    console.log('== Server is listening on port', port);
-    console.log('Querytext6 is', engineObj.queryText6);
-}));
 
-
-/*
-*   Use the public folder for styling assets and javascript.
-*/
 
 
 /*

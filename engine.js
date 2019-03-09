@@ -41,7 +41,7 @@ this.queryText12 = "SELECT * FROM `category` WHERE id = :category_id_selected_fr
 this.queryText13 = "INSERT INTO `customer` (`fname`, `lname`, `phonenumber`) VALUES (:fnameInput, :lnameInput, :phoneInput)";
 
 // add a new transaction
-this.queryText14 = "INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (:customerInput, :dateInput, :methodInput, :totalInput)";
+this.queryText14 = "INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (?, ?, ?, ?)";
 
 // add a new shipment
 this.queryText15 = "INSERT INTO `shipment` (`supplier_name`, `shipping_service_name`, `date`, `damaged`) VALUES (:supplierInput, :serviceInput, :dateInput, :damagedInput)";
