@@ -8,8 +8,6 @@ module.exports = function(){
     var YOTE  = require('./create.js');
 
 
-
-
     router.get('/', function(req, res){
             var context = {};
             res.render('employee', context);

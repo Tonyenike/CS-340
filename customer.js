@@ -127,6 +127,7 @@ module.exports = function(){
             }
     });
 
+    /*
     router.get('/order', function(req, res){
             var context = {};
             var qs = 0;
@@ -151,6 +152,6 @@ module.exports = function(){
                 }
             }
     });
-
+    */
     return router;
 }();
