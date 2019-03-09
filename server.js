@@ -28,12 +28,18 @@ var handlebars = require('express-handlebars');
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 var func = require('./engine.js'); // This lets us use the functions/variables that we have built on the back end.
+var engineObj = new func();
 var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 app.set('mysql', mysql);
 
 app.use(bodyParser.urlencoded({extended:true}));
 
+
+/*
+ *  Create socket connection to the client side JS. 
+ *  Begin listening on port [port-number].
+ */ 
 
 var port = 4200; // When running the server, type "localhost:[port-number]" in your address bar to see the webpage.
 
@@ -55,16 +61,6 @@ app.use('/employee', require('./employee.js'));
 app.use('/', require('./create.js'));
 
 var url = require('url');
-
-
-
-var engineObj = new func();
-
-/*
- *  Create socket connection to the client side JS. 
- *  Begin listening on port [port-number].
- */ 
-
 
 
 
