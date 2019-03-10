@@ -6,6 +6,7 @@ function orderproducts(){
     // Every element is a product. 
     // elements is the table of products from the textbox in the HTML page.
     var elements = document.getElementsByClassName('productnum');
+    var quantities = document.getElementsByClassName('product-qty');
     
     // payment method element in the HTML page 
     var paymentMethod = document.getElementById('payment-method').value;
@@ -27,9 +28,14 @@ function orderproducts(){
             alert("Order amount is not an integer");
             return;
         }
-        if (parseInt(elements[i].value) >= 0){}
+        if (parseInt(elements[i].value) >= 0){} 
         else{
             alert("Order amount is invalid");
+            return;
+        }
+        if (parseInt(+elements[i].value) <= parseInt(+quantities[i].innerHTML)){}
+        else{
+            alert("Order amount exceeds available quantity");
             return;
         }
 

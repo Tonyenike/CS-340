@@ -51,7 +51,7 @@ module.exports = function(){
     }
 
 
-    function add_inventory(orderInfo, res, results, mysql){
+    function add_inventory(orderInfo, res, results, mysql, complete){
 
         // Orders the necessary quantities of inventory. 
         // TO DO: WE DO NOT ERROR CHECK TO MAKE SURE WE HAVE ENOUGH QTY YET!
@@ -66,6 +66,7 @@ module.exports = function(){
                     res.end();
                 }
                 else{
+                    complete();
                     // Success! But we do nothing.
                 }
             });
@@ -74,7 +75,7 @@ module.exports = function(){
 
 
 
-    function addOrder(orderInfo, res, query, inserts, mysql){
+    function addOrder(orderInfo, res, query, inserts, mysql, complete){
         console.log("mysql is", mysql);   
  
         mysql.pool.query(query, inserts, function(error, results, fields){
@@ -84,13 +85,13 @@ module.exports = function(){
                 }
                 else{
                     console.log(results);
-                    add_inventory(orderInfo, res, results, mysql);
+                    add_inventory(orderInfo, res, results, mysql, complete);
                 }
         });
     }
 
    
-    function placeOrder(orderInfo, res, mysql){
+    function placeOrder(orderInfo, res, mysql, complete){
         var query = YOTE.queryTextCreateTransaction;
         var today = new Date();
         var dd = today.getDate();
@@ -119,8 +120,7 @@ module.exports = function(){
                 }
                 else{
                     inserts = [results.insertId, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
-                    console.log("before called, mysql is", mysql);
-                    addOrder(orderInfo, res, query, inserts, mysql);
+                    addOrder(orderInfo, res, query, inserts, mysql, complete);
                 }
             });
 
@@ -130,8 +130,7 @@ module.exports = function(){
         }
         else{
             inserts = [null, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
-            console.log("before called, mysql is", mysql);
-            addOrder(orderInfo, res, query, inserts, mysql);
+            addOrder(orderInfo, res, query, inserts, mysql, complete);
         }
     }
 
@@ -241,7 +240,8 @@ module.exports = function(){
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
 
             if(doOrder){
-                placeOrder(orderInfo, res, mysql);
+                placeOrder(orderInfo, res, mysql, complete);
+                maxval = maxval + orderInfo.productQTY.length;
             }
             if(doFilter){
                 getCategoriesSpecial(modRes, res, mysql, context, complete);
