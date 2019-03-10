@@ -80,7 +80,6 @@ module.exports = function(){
 
         if(orderInfo.customerbool){
 
-            //TO DO: Insert a new customer and get the ID of the new customer here...
             var cinserts = [orderInfo.fname, orderInfo.lname, toString(orderInfo.pnumber)];
             var cquery = YOTE.queryTextCreateCustomer;
             mysql.pool.query(cquery, cinserts, function(error, results, fields){
@@ -96,7 +95,6 @@ module.exports = function(){
 
 
 
-            //For now, this is NO customer.
 
         }
         else{

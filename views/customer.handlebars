@@ -1,38 +1,54 @@
 <html>
-        <h1> Welcome to S-Mart, valued customer!</h1>
+        <div id = "content" class = "container">
+        <h1 class = "row"> Welcome to S-Mart, valued customer!</h1>
 		<!-- Your page content goes here. -->
-        <div id = "content">
-        <div id = "filter-pages">
-        <div id = "category-page">
-            Filter by category
-            {{#each cat}}
-            <input type = "checkbox" id = "{{id}}"  class = "catbox"  {{mchecked}} >{{name}}
-            {{/each}}
+        <div id = "filter-pages" class = "container-fluid">
+<div class = "row">
+<div id = "category-page" class = "container-fluid">
+<h6>Filter by category</h6>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="misc-cat" {{michecked}}>
+  <label class="form-check-label">
+    Misc
+  </label>
+</div>
+{{#each cat}}
+<div class="form-check">
+  <input class="form-check-input catbox" type="checkbox" value="" id="{{id}}" {{mchecked}} >
+  <label class="form-check-label">
+    {{name}}
+  </label>
+</div>
+{{/each}}
+</div>
         </div>
-        <div id = "search-page">
-            Search for product by name
-            <input type = "textbox" id = "namesearch" value = "{{nameval}}">
+        <div id = "search-page" class = "container-fluid">
+            <h6> Search for product by name </h6>
+            <input type = "textbox"  id = "namesearch" placeholder = "Product name" value = "{{nameval}}">
         </div>
 
-        <div id = "money-page">
-            Limit the price range
-            <div id = "money-min">
+        <div id = "money-page" class = "container-fluid">
+            <h6> Limit the price range </h6>
+            <div id = "money-min" class = "form-check">
                 <input type = "checkbox" id = "min-check" {{minchecked}}>Minimum price:
                 <input type = "textbox" id = "min-value" value = "{{minval}}">
             </div>
-            <div id = "money-max">
+            <div id = "money-max" class = "form-check">
                 <input type = "checkbox" id = "max-check" {{maxchecked}}>Maximum price:
                 <input type = "textbox" id = "max-value" value = "{{maxval}}">
             </div>
         </div>
-        <button id = "filter-button" onclick = "filterproducts()">Apply filters</button>
+        <div class = "container-fluid">
+        <button id = "filter-button" class = "btn-primary form-row" onclick = "filterproducts()">Apply filters</button>
+        </div>
+        </div>
         </div>
 
-        <table id = "products">
-            <thead>
-                <th>Product name</th>
-                <th>Cost</th>
-                <th>Order amount</th>
+        <table id = "products" class = "table table-sm table-striped table-bordered" >
+            <thead class = "thead-dark" >
+                <th scope = "col" >Product name</th>
+                <th scope = "col" >Cost</th>
+                <th scope = "col" >Order amount</th>
             </thead>
             <tbody>
                 {{#each products}}
@@ -49,15 +65,23 @@
                 <option name = "check">Check</option>
             </select>
             </div>
-            <div id = "customer-info">
-            OPTIONAL: enter your info:
+            <div id = "customer-info" class = "row no-gutters">
+            <div class = "column">
+            <h4>OPTIONAL: enter your info:</h4>
+            </div>
             <div id = "custuff">
+            <div class = "column">
             First name:
             <input type = "textbox" id = "fname">                   
+            </div>
+            <div class = "column">
             Last name:
-            <input type = "textbox" id = "lname">
+            <input type = "textbox"  id = "lname">
+            </div>
+            <div class = "column">
             Phone number:
             <input type = "textbox" id = "pnumber">
+            </div>
             </div>
             </div>                 
             <button id = "order" onclick = "orderproducts()">Order selected products</button>
