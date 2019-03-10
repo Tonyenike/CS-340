@@ -62,15 +62,15 @@ app.use('/', require('./create.js'));
 
 var url = require('url');
 
+app.get('/', function(req,res){
+    res.redirect('/index');
+});
 
 
 /*
 *  If the content that the user requests doesn't exist, send a 404 error.
 */
 
-app.get('/', function(req,res){
-    res.redirect('/index');
-});
 
 app.use(function(req,res){
   res.status(404);

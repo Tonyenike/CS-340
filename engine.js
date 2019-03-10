@@ -11,7 +11,9 @@ this.queryText2 = "SELECT * FROM `transaction`";
 this.queryText3 = "SELECT * FROM `shipment`";
 
 // get all information for all products
-this.queryText4 = "SELECT * FROM product`";
+this.queryText4 = "SELECT * FROM product P " +
+                    "INNER JOIN (SELECT P.id AS piddle, COUNT(I.id) AS quantity FROM product P INNER JOIN inventory_item I ON I.pid = P.id " +
+                    "WHERE I.transactionID IS NULL GROUP BY P.id) AS quantities ON quantities.piddle = P.id"; 
 
 // get information for every inventory item
 this.queryText5 = "SELECT * FROM `inventory_item`";
@@ -61,6 +63,8 @@ this.queryText19 = "INSERT INTO `product_category` (`cid`, `pid`) VALUES (:cidIn
 // filter products by price
 this.queryText20 = "SELECT * FROM product P " +
                     "LEFT JOIN product_category PC ON PC.pid = P.id " + 
+                    "INNER JOIN (SELECT P.id AS piddle, COUNT(I.id) AS quantity FROM product P INNER JOIN inventory_item I ON I.pid = P.id " +
+                    "WHERE I.transactionID IS NULL GROUP BY P.id) AS quantities ON quantities.piddle = P.id " + 
                     "WHERE (selling_price <= ? AND selling_price >= ?)";
 
 // filter products by name
@@ -103,8 +107,10 @@ this.queryText32 = "UPDATE product SET name = :name_of_choice, selling_price = :
 // update a row in the CATEGORY table
 this.queryText33 = "UPDATE category SET name = :name_of_choice WHERE id = :id_to_change";
 
-this.queryText34 = "SELECT P.id, P.selling_price, P.name, COUNT(PC.cid) FROM product P " +
-                   "LEFT JOIN product_category PC ON PC.pid = P.id " + 
+this.queryText34 = "SELECT P.id, P.selling_price, P.name, quantities.quantity, COUNT(PC.cid) FROM product P " +
+                   "LEFT JOIN product_category PC ON PC.pid = P.id " +
+                   "INNER JOIN (SELECT P.id, COUNT(I.id) AS quantity FROM product P INNER JOIN inventory_item I ON I.pid = P.id " +
+                   "WHERE I.transactionID IS NULL GROUP BY P.id) AS quantities ON quantities.id = P.id " + 
                    "WHERE (selling_price <= ? AND selling_price >= ? AND name LIKE '%' ? '%')";
 
 this.queryTextCreateTransaction = "INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (?, ?, ?, ?)";

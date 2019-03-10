@@ -237,7 +237,7 @@ module.exports = function(){
             var qs = 0;
             maxval = 2;
             var mysql = req.app.get('mysql');
-            context.jsscripts = ["filter.js", "order.js"];            
+            context.jsscripts = ["sort.js", "filter.js", "order.js"];            
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
 
             if(doOrder){
