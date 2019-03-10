@@ -1,18 +1,12 @@
 var socket = io();
 
-function filterproducts(){
+async function filterproducts(){
 
     var maxbool = document.getElementById('max-check').checked;
 
-    console.log(maxbool);
-
     var minbool = document.getElementById('min-check').checked;
 
-    console.log(minbool);
-
     var maxval = document.getElementById('max-value').value;
-
-    console.log(maxval);
 
     if (parseFloat(maxval) >= 0) {
     // It's a number
@@ -25,7 +19,6 @@ function filterproducts(){
 
     var minval = document.getElementById('min-value').value;
 
-    console.log(minval);
     if (parseFloat(minval) >= 0) {
     // It's a number
     }
@@ -36,7 +29,6 @@ function filterproducts(){
 
     var nameval = document.getElementById('namesearch').value;
 
-    console.log(nameval);
 
     var yeet = true;
 
@@ -45,8 +37,29 @@ function filterproducts(){
         nameval = "NULL";
     }
 
-    window.location = 
-    '/customer/filter/' + maxbool.toString() + '/' + maxval + '/'
-                        + minbool.toString() + '/' + minval + '/'
-                        + yeet.toString()    + '/' + nameval
+
+    var categories = document.getElementsByClassName('catbox');
+    var categoryIds = new Array(0);
+    var totalcategories = new Array(0);
+
+    var i;
+    for(i=0; i < categories.length; i++){
+        totalcategories.push(parseInt(categories[i].id));
+        //push categoryids that we WANT TO PRESERVE in our search.
+        if(categories[i].checked)
+            categoryIds.push(parseInt(categories[i].id));        
+    }
+
+
+    socket.emit('applyf', {maxbool: maxbool,
+                           maxval: maxval,
+                           minbool: minbool,
+                           minval: minval,
+                           namebool: yeet,
+                           nameval: nameval,
+                           categories: categoryIds,
+                           totalcategories: totalcategories});
+
+   setTimeout(function(){window.location.reload();}, 200);
+
 }

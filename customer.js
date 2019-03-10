@@ -13,20 +13,22 @@ module.exports = function(){
     var YEET  = require('./engine.js');
     var YOTE = new YEET();
 
-    var ordercontent = {};
-    ordercontent.sett = 0;
+
+    var doFilter = false;
+    var modRes = {};
 
     io.on('connection', function(socket){
         socket.on('products-ordered',function(content){
             var q = YOTE.queryText14
-            OTHER.pool.query(q, function(error, results, fields){
+            mysql.pool.query(q, function(error, results, fields){
             });
-        });
-        socket.on('apply-filters',function(content){
-            ordercontent = content;
-            ordercontent.sett = 1;
-        });
+       });
+       socket.on('applyf',function(content){
+           doFilter = true;
+           modRes = content;
+       });
     });
+
 
     function getCategories(res, mysql, context, complete){
         var q = YOTE.queryText6;
@@ -36,9 +38,39 @@ module.exports = function(){
                 res.end();
                 }
                 context.cat = results;
+                var j;
+                    for(j=0; j < context.cat.length; j++){
+                        context.cat[j].mchecked = "checked";
+                    }
                 complete();
                 });
     }
+
+    
+    function getCategoriesSpecial(modRes, res, mysql, context, complete){
+        var categories = modRes.categories;
+        var totalcategories = modRes.totalcategories;
+        var q = YOTE.queryText6;
+        mysql.pool.query(q, function(error, results, fields){
+                if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+                }
+                context.cat = results;
+                var i;
+                var j = 0;
+                for(i = 0; i < totalcategories.length; i++){
+                    if(modRes.totalcategories[i] === categories[j]){
+                        context.cat[i].mchecked = "checked";
+                        j = j + 1;
+                        i = -1;
+                    }
+                }
+                complete();
+                });
+    }
+
+
 
     function getProducts(res, mysql, context, complete){
         var q = YOTE.queryText4;
@@ -67,24 +99,39 @@ module.exports = function(){
 
 
     function getProductsFiltered(req, res, mysql, context, complete){
+      
+      var categories = req.categories;
       var query = YOTE.queryText20;
-      var minv = req.params.minval;
-      var maxv = req.params.maxval;
-      context.maxval = req.params.maxval;
-      context.minval = req.params.minval;
-      if (req.params.maxbool === "false"){
+      var minv = req.minval;
+      var maxv = req.maxval;
+      context.maxval = req.maxval;
+      context.minval = req.minval;
+      if (req.maxbool === false){
             maxv = "1000000000";
       }
       else{context.maxchecked = "checked";}
-      if (req.params.minbool === "false"){
+      if (req.minbool === false){
             minv = "0";
       }
       else{context.minchecked = "checked";}
       var inserts = [maxv, minv];
-      if (req.params.namebool === "true"){
+      if (req.namebool === true){
             query = YOTE.queryText34;
-            inserts = [maxv, minv, req.params.nameval];
-            context.nameval = req.params.nameval;
+            inserts = [maxv, minv, req.nameval];
+            context.nameval = req.nameval;
+      }
+      if(categories.length === 0){
+        complete();   
+        return;
+      }     
+      else{
+         query = query + " AND (PC.cid = ? ";
+         inserts = inserts.concat(categories);
+         var i;
+        for(i = 1; i < categories.length; i++){
+            query = query + " OR PC.cid = ?";
+        }
+        query = query + ") GROUP BY P.id";
       }
       mysql.pool.query(query, inserts, function(error, results, fields){
             if(error){
@@ -100,58 +147,26 @@ module.exports = function(){
     router.get('/', function(req, res){
             var context = {};
             var qs = 0;
+            maxval = 2;
             var mysql = req.app.get('mysql');
             context.jsscripts = ["filter.js", "order.js"];
-            getCategories(res, mysql, context, complete);
-            getProducts(res, mysql, context, complete);
+            if(doFilter){
+                getCategoriesSpecial(modRes, res, mysql, context, complete);
+                getProductsFiltered(modRes, res, mysql, context, complete);
+            }
+            else{
+                getCategories(res, mysql, context, complete);
+                getProducts(res, mysql, context, complete);
+            }
             function complete(){
                 qs = qs + 1;
-                if(qs >= 2){
-                    res.status(200).render('customer', context);
+                if(qs >= maxval){
+                    res.render('customer', context);
+                    doFilter = false;
+                    modRes = {};
                 }
             }
     });
-
-    router.get('/filter/:maxbool/:maxval/:minbool/:minval/:namebool/:nameval', function(req, res){
-            var context = {};
-            var qs = 0;
-            var mysql = req.app.get('mysql');
-            context.jsscripts = ["filter.js", "order.js"];
-            getCategories(res, mysql, context, complete);
-            getProductsFiltered(req, res, mysql, context, complete);
-            function complete(){
-                qs = qs + 1;
-                if(qs >= 2){
-                    res.status(200).render('customer', context);
-                }
-            }
-    });
-
-    /*
-    router.get('/order', function(req, res){
-            var context = {};
-            var qs = 0;
-            var mysql = req.app.get('mysql');
-            context.jsscripts = ["filter.js", "order.js"];
-            getCategories(res, mysql, context, complete);
-            getProducts(res, mysql, context, complete);
-            var ticker = 0;
-            while(ordercontent.sett ==! 1){
-                //busy wait loop until our order comes through.
-                ticker = ticker + 1;
-                if(ticker === 1000000000){
-                    res.status(500);
-                    return router;
-                }
-            }
-            setOrder(res, mysql, context, complete, ordercontent);
-            function complete(){
-                qs = qs + 1;
-                if(qs >= 3){
-                    res.status(200).render('customer', context);
-                }
-            }
-    });
-    */
+    
     return router;
 }();

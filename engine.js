@@ -11,7 +11,7 @@ this.queryText2 = "SELECT * FROM `transaction`";
 this.queryText3 = "SELECT * FROM `shipment`";
 
 // get all information for all products
-this.queryText4 = "SELECT * FROM `product`";
+this.queryText4 = "SELECT * FROM product`";
 
 // get information for every inventory item
 this.queryText5 = "SELECT * FROM `inventory_item`";
@@ -59,7 +59,9 @@ this.queryText18 = "INSERT INTO `category` (`name`) VALUES (:nameInput)";
 this.queryText19 = "INSERT INTO `product_category` (`cid`, `pid`) VALUES (:cidInput, :pidInput)";
 
 // filter products by price
-this.queryText20 = "SELECT * FROM `product` WHERE `selling_price` <= ? AND `selling_price` >= ?";
+this.queryText20 = "SELECT * FROM product P " +
+                    "INNER JOIN product_category PC ON PC.pid = P.id " + 
+                    "WHERE (selling_price <= ? AND selling_price >= ?)";
 
 // filter products by name
 this.queryText21 = "SELECT * FROM `product` WHERE `name` = nameInput";
@@ -101,7 +103,9 @@ this.queryText32 = "UPDATE product SET name = :name_of_choice, selling_price = :
 // update a row in the CATEGORY table
 this.queryText33 = "UPDATE category SET name = :name_of_choice WHERE id = :id_to_change";
 
-this.queryText34 = "SELECT * FROM `product` WHERE `selling_price` <= ? AND `selling_price` >= ? AND `name` = ?";
+this.queryText34 = "SELECT P.id, P.selling_price, P.name, COUNT(PC.cid) FROM product P " +
+                   "INNER JOIN product_category PC ON PC.pid = P.id " + 
+                   "WHERE (selling_price <= ? AND selling_price >= ? AND name = ?)";
 }
 }
 
