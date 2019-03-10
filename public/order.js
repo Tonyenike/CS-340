@@ -84,10 +84,19 @@ function orderproducts(){
         }
     }
 
+    var customerbool = (count === 0);
+
+
     // toFixed function prints a two-point floating point value (the dollars and cents!)
     alert("Order succesfully submitted. Your total is: $" + pricetotal.toFixed(2)); 
     socket.emit("products-ordered", {paymentMethod: paymentMethod, 
                                      paymentTotal: pricetotal, 
                                      productID: productId, 
-                                     productQTY: productQty});
+                                     productQTY: productQty,
+                                     customerbool: customerbool,
+                                     fname: customerfname,
+                                     lname: customerlname,
+                                     pnumber: customerpnumber});
+
+   setTimeout(function(){window.location.reload();}, 200);
 }

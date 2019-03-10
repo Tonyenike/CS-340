@@ -17,17 +17,20 @@ module.exports = function(){
     var doFilter = false;
     var modRes = {};
 
+    var doOrder = false;
+    var orderInfo = {};
+
     io.on('connection', function(socket){
         socket.on('products-ordered',function(content){
-            var q = YOTE.queryText14
-            mysql.pool.query(q, function(error, results, fields){
-            });
-       });
+            doOrder = true;    
+            orderInfo = content;
+        });
        socket.on('applyf',function(content){
            doFilter = true;
            modRes = content;
        });
     });
+
 
 
     function getCategories(res, mysql, context, complete){
@@ -46,7 +49,63 @@ module.exports = function(){
                 });
     }
 
+    function addOrder(query, inserts, mysql){
     
+        mysql.pool.query(query, inserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+        });
+    }
+
+   
+    function placeOrder(orderInfo, res, mysql){
+        var query = YOTE.queryTextCreateTransaction;
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        var dateval = yyyy + '-' + mm + '-' + dd;
+        var inserts = new Array(4);
+
+        if(orderInfo.customerbool){
+
+            //TO DO: Insert a new customer and get the ID of the new customer here...
+            var cinserts = [orderInfo.fname, orderInfo.lname, toString(orderInfo.pnumber)];
+            var cquery = YOTE.queryTextCreateCustomer;
+            mysql.pool.query(cquery, cinserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                else{
+                    inserts = [results.insertId, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
+                    addOrder(query, inserts, mysql);
+                }
+            });
+
+
+
+            //For now, this is NO customer.
+
+        }
+        else{
+            inserts = [null, dateval, orderInfo.paymentMethod, toString(orderInfo.paymentTotal)];
+            addOrder(query, inserts, mysql);
+        }
+    }
+
+ 
     function getCategoriesSpecial(modRes, res, mysql, context, complete){
         var categories = modRes.categories;
         var totalcategories = modRes.totalcategories;
@@ -150,6 +209,9 @@ module.exports = function(){
             maxval = 2;
             var mysql = req.app.get('mysql');
             context.jsscripts = ["filter.js", "order.js"];
+            if(doOrder){
+                placeOrder(orderInfo, res, mysql);
+            }
             if(doFilter){
                 getCategoriesSpecial(modRes, res, mysql, context, complete);
                 getProductsFiltered(modRes, res, mysql, context, complete);

@@ -47,7 +47,7 @@ this.queryText14 = "INSERT INTO `transaction` (`customer`, `date`, `payment_meth
 this.queryText15 = "INSERT INTO `shipment` (`supplier_name`, `shipping_service_name`, `date`, `damaged`) VALUES (:supplierInput, :serviceInput, :dateInput, :damagedInput)";
 
 // add a new product
-this.queryText16 = "INSERT INTO `product` (`name`, `selling_price`) VALUES (:nameInput, :priceInput)";
+this.queryText16 = "INSERT INTO product (name, selling_price) VALUES (?, ?)";
 
 // add a new item
 this.queryText17 = "INSERT INTO `inventory_item` (`pid`, `serial`, `buying_price`, `shipmentID`, `transactionID`) VALUES (:pidInput, :serialInput, :priceInput, :shipmentInput, :transactionInput)";
@@ -106,6 +106,10 @@ this.queryText33 = "UPDATE category SET name = :name_of_choice WHERE id = :id_to
 this.queryText34 = "SELECT P.id, P.selling_price, P.name, COUNT(PC.cid) FROM product P " +
                    "INNER JOIN product_category PC ON PC.pid = P.id " + 
                    "WHERE (selling_price <= ? AND selling_price >= ? AND name LIKE '%' ? '%')";
+
+this.queryTextCreateTransaction = "INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (?, ?, ?, ?)";
+
+this.queryTextCreateCustomer = "INSERT INTO `customer` (`fname`, `lname`, `phone_number`) VALUES (?, ?, ?)";
 }
 }
 
