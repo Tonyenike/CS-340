@@ -160,60 +160,60 @@
       </div>
     </fieldset>
   </form>
-
-  <form id="deleteitem" action="/deleteitem" method="post">
+  
+  <form id="deleteItem">
     <fieldset>
       <legend>Delete Item By id</legend>
       <div>
         <label for="text">ID:</label>
-        <input type="text" name="idInput" value="">
+        <input type="text" name="idItem" value="">
       </div>
       </br>
-      <label><input type="submit" value="Submit"></label>
+      <button onclick="deleteItem({{idItem}})">Delete</button>
       </div>
     </fieldset>
   </form>
 
-  <form id="deleteproduct" action="/deleteproduct" method="post">
+  <form id="deleteProduct">
     <fieldset>
       <legend>Delete Product By id</legend>
       <div>
         <label for="text">ID:</label>
-        <input type="text" name="idInput" value="">
+        <input type="text" name="idProduct" value="">
       </div>
       </br>
-      <label><input type="submit" value="Submit"></label>
+      <button onclick="deleteProduct({{idProduct}})">Delete</button>
       </div>
     </fieldset>
   </form>
 
-  <form action="" method="">
+  <form id="deleteTransaction" action="" method="">
     <fieldset>
       <legend>Delete Transaction By id</legend>
       <div>
         <label for="text">ID:</label>
-        <input type="text" name="idInput" value="">
+        <input type="text" name="idTransaction" value="">
       </div>
       </br>
-      <label><input type="submit" value="Submit"></label>
+      <button onclick="deleteTransaction({{idTransaction}})">Delete</button>
       </div>
     </fieldset>
   </form>
 
-  <form id="deleteshipment" action="/deleteshipment" method="post">
+  <form id="deleteShipment">
     <fieldset>
       <legend>Delete Shipment By id</legend>
       <div>
         <label for="text">ID:</label>
-        <input type="text" name="idInput" value="">
+        <input type="text" name="idShipment" value="">
       </div>
       </br>
-      <label><input type="submit" value="Submit"></label>
+      <button onclick="deleteShipment({{idShipment}})">Delete</button>
       </div>
     </fieldset>
   </form>
 
-  <form id="deletecategory" action="/deletecategory" method="post">
+  <form id="deleteCategory">
     <fieldset>
       <legend>Delete Category By id</legend>
       <div>
@@ -221,11 +221,11 @@
         <input type="text" name="idInput" value="">
       </div>
       </br>
-      <label><input type="submit" value="Submit"></label>
+      <button onclick="deleteCategory({{idCategory}})">Delete</button>
       </div>
     </fieldset>
   </form>
-
+  
   <form id="updatecustomer" action="/updatecustomer" method="post">
     <fieldset>
       <legend>Update Customer</legend>
