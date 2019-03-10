@@ -111,7 +111,7 @@ this.queryTextCreateTransaction = "INSERT INTO `transaction` (`customer`, `date`
 
 this.queryTextCreateCustomer = "INSERT INTO `customer` (`fname`, `lname`, `phone_number`) VALUES (?, ?, ?)";
 
-this.queryTextAddInventory = "UPDATE inventory_item SET transactionID = ? WHERE id IN (SELECT * FROM (SELECT id FROM inventory_item WHERE pid = ? LIMIT ?) temp_tab)"; 
+this.queryTextAddInventory = "UPDATE inventory_item SET transactionID = ? WHERE id IN (SELECT * FROM (SELECT id FROM inventory_item WHERE pid = ? AND transactionID IS NULL LIMIT ?) temp_tab)"; 
 
 this.queryTextGetQty = "SELECT COUNT(id) FROM inventory_item WHERE pid = ? GROUP BY pid";
 
