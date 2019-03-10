@@ -50,12 +50,40 @@ module.exports = function(){
                 });
     }
 
-    function addOrder(query, inserts, mysql){
+
+    function add_inventory(orderInfo, results, mysql){
+
+        // Orders the necessary quantities of inventory. 
+        // TO DO: WE DO NOT ERROR CHECK TO MAKE SURE WE HAVE ENOUGH QTY YET!
+        var query = YOTE.queryTextAddInventory; 
+        var i;
+        for(i = 0; i < orderInfo.productQTY.length; i++){
+            var inserts = [results.insertId, orderInfo.productID[i], orderInfo.productQTY[i]];
+
+            mysql.pool.query(query, inserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                else{
+                    // Success! But we do nothing.
+                }
+            });
+        }
+    }
+
+
+
+    function addOrder(orderInfo, query, inserts, mysql){
     
         mysql.pool.query(query, inserts, function(error, results, fields){
                 if(error){
                     res.write(JSON.stringify(error));
                     res.end();
+                }
+                else{
+                    console.log(results);
+                    add_inventory(orderInfo, results, mysql);
                 }
         });
     }
@@ -90,7 +118,7 @@ module.exports = function(){
                 }
                 else{
                     inserts = [results.insertId, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
-                    addOrder(query, inserts, mysql);
+                    addOrder(orderInfo, query, inserts, mysql);
                 }
             });
 
@@ -145,18 +173,6 @@ module.exports = function(){
                 complete();
                 });
     }
-    function setOrder(res, mysql, context, complete, ordercontent){
-        ordercontent.sett = 0;
-        var q1 = YOTE.queryText14; //Adding a new transaction.
-        var q2 = YOTE.queryText15; //If the customer entered their info, then we need to add them as well.
-        mysql.pool.query(q1, function(error, results, fields){
-                if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
-                }
-        });
-    }
-
 
     function getProductsFiltered(req, res, mysql, context, complete){
       

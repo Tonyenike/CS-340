@@ -110,6 +110,11 @@ this.queryText34 = "SELECT P.id, P.selling_price, P.name, COUNT(PC.cid) FROM pro
 this.queryTextCreateTransaction = "INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (?, ?, ?, ?)";
 
 this.queryTextCreateCustomer = "INSERT INTO `customer` (`fname`, `lname`, `phone_number`) VALUES (?, ?, ?)";
+
+this.queryTextAddInventory = "UPDATE inventory_item SET transactionID = ? WHERE id IN (SELECT id FROM inventory_item WHERE pid = ? LIMIT ?)"; 
+
+this.queryTextGetQty = "SELECT COUNT(id) FROM inventory_item WHERE pid = ? GROUP BY pid";
+
 }
 }
 
