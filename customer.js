@@ -51,7 +51,7 @@ module.exports = function(){
     }
 
 
-    function add_inventory(orderInfo, results, mysql){
+    function add_inventory(orderInfo, res, results, mysql){
 
         // Orders the necessary quantities of inventory. 
         // TO DO: WE DO NOT ERROR CHECK TO MAKE SURE WE HAVE ENOUGH QTY YET!
@@ -74,8 +74,9 @@ module.exports = function(){
 
 
 
-    function addOrder(orderInfo, query, inserts, mysql){
-    
+    function addOrder(orderInfo, res, query, inserts, mysql){
+        console.log("mysql is", mysql);   
+ 
         mysql.pool.query(query, inserts, function(error, results, fields){
                 if(error){
                     res.write(JSON.stringify(error));
@@ -83,7 +84,7 @@ module.exports = function(){
                 }
                 else{
                     console.log(results);
-                    add_inventory(orderInfo, results, mysql);
+                    add_inventory(orderInfo, res, results, mysql);
                 }
         });
     }
@@ -118,7 +119,8 @@ module.exports = function(){
                 }
                 else{
                     inserts = [results.insertId, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
-                    addOrder(orderInfo, query, inserts, mysql);
+                    console.log("before called, mysql is", mysql);
+                    addOrder(orderInfo, res, query, inserts, mysql);
                 }
             });
 
@@ -127,8 +129,9 @@ module.exports = function(){
 
         }
         else{
-            inserts = [null, dateval, orderInfo.paymentMethod, toString(orderInfo.paymentTotal)];
-            addOrder(query, inserts, mysql);
+            inserts = [null, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
+            console.log("before called, mysql is", mysql);
+            addOrder(orderInfo, res, query, inserts, mysql);
         }
     }
 
