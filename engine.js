@@ -105,7 +105,7 @@ this.queryText33 = "UPDATE category SET name = :name_of_choice WHERE id = :id_to
 
 this.queryText34 = "SELECT P.id, P.selling_price, P.name, COUNT(PC.cid) FROM product P " +
                    "INNER JOIN product_category PC ON PC.pid = P.id " + 
-                   "WHERE (selling_price <= ? AND selling_price >= ? AND name = ?)";
+                   "WHERE (selling_price <= ? AND selling_price >= ? AND name LIKE '%' ? '%')";
 }
 }
 
