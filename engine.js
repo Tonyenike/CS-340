@@ -12,7 +12,7 @@ this.queryText3 = "SELECT * FROM `shipment`";
 
 // get all information for all products
 this.queryText4 = "SELECT * FROM product P " +
-                    "INNER JOIN (SELECT P.id AS piddle, COUNT(I.id) AS quantity FROM product P INNER JOIN inventory_item I ON I.pid = P.id " +
+                    "LEFT JOIN (SELECT P.id AS piddle, COUNT(I.id) AS quantity FROM product P INNER JOIN inventory_item I ON I.pid = P.id " +
                     "WHERE I.transactionID IS NULL GROUP BY P.id) AS quantities ON quantities.piddle = P.id"; 
 
 // get information for every inventory item

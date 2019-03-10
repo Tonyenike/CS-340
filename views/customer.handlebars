@@ -53,7 +53,7 @@
             </thead>
             <tbody>
                 {{#each products}}
-                <tr><td>{{name}}</td><td>${{selling_price}}</td><td>{{quantity}}</td><td><input type = "textbox" class = "productnum" data-priceval = {{selling_price}} id = "product{{id}}"value = "0"></td></tr>
+                <tr><td>{{name}}</td><td>${{selling_price}}</td><td>{{#if quantity}} {{quantity}} {{else}} 0 {{/if}} </td><td><input type = "textbox" class = "productnum" data-priceval = {{selling_price}} id = "product{{id}}"value = "0"></td></tr>
                 {{/each}}
             </tbody>
         </table>
