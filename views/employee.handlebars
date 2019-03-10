@@ -226,9 +226,13 @@
     </fieldset>
   </form>
   
-  <form id="updatecustomer" action="/updatecustomer" method="post">
+  <form id="updateCustomer">
     <fieldset>
       <legend>Update Customer</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idCustUpdate" value="">
+      </div>
       <div>
         <label for="text">First Name:</label>
         <input type="text" name="fnameInput" value="">
@@ -245,14 +249,18 @@
       </div>
       </br>
       <div>
-        <label><input type="submit" value="Submit"></label>
+        <button onclick="updateCustomer({{idCustUpdate}})">Update</button>
       </div>
     </fieldset>
   </form>
 
-  <form id="updatetransaction" action="/updatetransaction" method="post">
+  <form id="updateTransaction">
     <fieldset>
       <legend>Update Transaction</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idTransUpdate" value="">
+      </div>
       <div>
         <label for="text">Customer ID:</label>
         <input type="text" name="customerInput" value="">
@@ -274,14 +282,18 @@
       </div>
       </br>
       <div>
-        <label><input type="submit" value="Submit"></label>
+        <button onclick="updateTransaction({{idTransUpdate}})">Update</button>
       </div>
     </fieldset>
   </form>
 
-  <form id="updateshipment" action="/updateshipment" method="post">
+  <form id="updateShipment">
     <fieldset>
       <legend>Update Shipment</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idShipUpdate" value="">
+      </div>
       <div>
         <label for="text">Supplier:</label>
         <input type="text" name="supplierInput" value="">
@@ -303,14 +315,18 @@
       </div>
       </br>
       <div>
-        <label><input type="submit" value="Submit"></label>
+        <button onclick="updateShipment({{idShipUpdate}})">Update</button>
       </div>
     </fieldset>
   </form>
 
-  <form id="updateitem" action="/updateitem" method="post">
+  <form id="updateItem">
     <fieldset>
       <legend>Update Inventory Item</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idItemUpdate" value="">
+      </div>
       <div>
         <label for="text">Product ID:</label>
         <input type="text" name="pidInput" value="">
@@ -332,26 +348,26 @@
       </div>
       </br>
       <div>
-        <label><input type="submit" value="Submit"></label>
+        <button onclick="updateItem({{idItemUpdate}})">Update</button>
       </div>
     </fieldset>
   </form>
 
-  <form id="updatecategory" action="/updatecategory" method="post">
+  <form id="updateCategory">
     <fieldset>
       <legend>Update Category</legend>
       <div>
-        <label for="text">Category ID:</label>
-        <input type="text" name="idInput" value="">
+        <label for="text">ID:</label>
+        <input type="text" name="idCatUpdate" value="">
       </div>
-      </br>
       <div>
         <label for="text">Category Name:</label>
         <input type="text" name="nameInput" value="">
       </div>
       </br>
       <div>
-        <label><input type="submit" value="Submit"></label>
+        <button onclick="updateCategory({{idCatUpdate}})">Update</button>
       </div>
     </fieldset>
+  </form>
   </form>
