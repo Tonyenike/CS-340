@@ -6,6 +6,8 @@ async function filterproducts(){
 
     var minbool = document.getElementById('min-check').checked;
 
+    var miscbool = document.getElementById('misc-cat').checked;
+
     var maxval = document.getElementById('max-value').value;
 
     if (parseFloat(maxval) >= 0) {
@@ -57,6 +59,7 @@ async function filterproducts(){
                            minval: minval,
                            namebool: yeet,
                            nameval: nameval,
+                           miscbool: miscbool,
                            categories: categoryIds,
                            totalcategories: totalcategories});
 

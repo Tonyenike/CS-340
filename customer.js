@@ -45,6 +45,7 @@ module.exports = function(){
                     for(j=0; j < context.cat.length; j++){
                         context.cat[j].mchecked = "checked";
                     }
+                context.michecked = "checked";
                 complete();
                 });
     }
@@ -123,6 +124,8 @@ module.exports = function(){
                         i = -1;
                     }
                 }
+                if(modRes.miscbool)
+                    context.michecked = "checked";
                 complete();
                 });
     }
@@ -177,18 +180,27 @@ module.exports = function(){
             inserts = [maxv, minv, req.nameval];
             context.nameval = req.nameval;
       }
-      if(categories.length === 0){
+      if(categories.length === 0 && req.miscbool === false){
+        console.log("yes");
         complete();   
         return;
       }     
       else{
-         query = query + " AND (PC.cid = ? ";
-         inserts = inserts.concat(categories);
-         var i;
-        for(i = 1; i < categories.length; i++){
-            query = query + " OR PC.cid = ?";
-        }
-        query = query + ") GROUP BY P.id";
+         if(categories.length === 0){
+            query = query + " AND P.id NOT IN (SELECT pid FROM product_category) GROUP BY P.id";
+         }
+         else{
+            query = query + " AND (PC.cid = ? ";
+            inserts = inserts.concat(categories);
+            var i;
+            for(i = 1; i < categories.length; i++){
+                query = query + " OR PC.cid = ?";
+            }
+            if(req.miscbool){
+                query = query + " OR P.id NOT IN (SELECT pid FROM product_category)";
+            }
+            query = query + ") GROUP BY P.id";
+            }
       }
       mysql.pool.query(query, inserts, function(error, results, fields){
             if(error){

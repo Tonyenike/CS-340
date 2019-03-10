@@ -60,7 +60,7 @@ this.queryText19 = "INSERT INTO `product_category` (`cid`, `pid`) VALUES (:cidIn
 
 // filter products by price
 this.queryText20 = "SELECT * FROM product P " +
-                    "INNER JOIN product_category PC ON PC.pid = P.id " + 
+                    "LEFT JOIN product_category PC ON PC.pid = P.id " + 
                     "WHERE (selling_price <= ? AND selling_price >= ?)";
 
 // filter products by name
@@ -104,7 +104,7 @@ this.queryText32 = "UPDATE product SET name = :name_of_choice, selling_price = :
 this.queryText33 = "UPDATE category SET name = :name_of_choice WHERE id = :id_to_change";
 
 this.queryText34 = "SELECT P.id, P.selling_price, P.name, COUNT(PC.cid) FROM product P " +
-                   "INNER JOIN product_category PC ON PC.pid = P.id " + 
+                   "LEFT JOIN product_category PC ON PC.pid = P.id " + 
                    "WHERE (selling_price <= ? AND selling_price >= ? AND name LIKE '%' ? '%')";
 
 this.queryTextCreateTransaction = "INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (?, ?, ?, ?)";
