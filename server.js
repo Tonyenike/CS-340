@@ -68,6 +68,10 @@ var url = require('url');
 *  If the content that the user requests doesn't exist, send a 404 error.
 */
 
+app.get('/', function(req,res){
+    res.redirect('/index');
+});
+
 app.use(function(req,res){
   res.status(404);
   res.render('404');
