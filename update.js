@@ -41,7 +41,7 @@ module.exports = function() {
 
   router.put('/updateShipment', function(req, res) {
     var mysql = req.app.get('mysql');
-    var inserts = [req.body.supplierInput, req.body.supplierInput, req.body.serviceInput, req.body.dateInput, req.body.damagedInput, req.body.idShipUpdate];
+    var inserts = [req.body.supplierInput, req.body.serviceInput, req.body.dateInput, req.body.damagedInput, req.body.idShipUpdate];
     sql = mysql.pool.query(queryUpdateShipment, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
