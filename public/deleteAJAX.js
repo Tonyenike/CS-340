@@ -64,3 +64,14 @@ function deleteCustomer(id){
         }
     })
 };
+
+function deleteProductCategoryRel(pid,cid){
+  console.log("DELETE CALLED");
+    $.ajax({
+        url: '/deleteProductCategoryRelationShip/' + pid + '/' + cid,
+        type: 'DELETE',
+        success: function(result){
+            window.location.reload(true);
+        }
+    })
+};
