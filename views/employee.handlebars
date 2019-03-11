@@ -239,6 +239,23 @@
       </div>
     </fieldset>
   </form>
+  
+    <form id="deleteProductCategory">
+    <fieldset>
+      <legend>Delete Product Category Relationship</legend>
+      <div>
+        <label for="text">PID:</label>
+        <input type="text" name="Pid" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">CID:</label>
+        <input type="text" name="Cid" value="">
+      </div>
+      <button onclick="deleteProductCategoryRel(Pid.value, Cid.value)">Delete</button>
+      </div>
+    </fieldset>
+  </form>
 
   <form id="updateCustomer">
     <fieldset>
