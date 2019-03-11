@@ -1,3 +1,4 @@
+
   <form id="addcustomer" action="/createCustomer" method="post">
     <fieldset>
       <legend>Create Customer</legend>
@@ -160,7 +161,20 @@
       </div>
     </fieldset>
   </form>
-  
+
+  <form id="deleteCustomer">
+    <fieldset>
+      <legend>Delete Customer By id</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idCustomer" value="">
+      </div>
+      </br>
+      <button onclick="deleteCustomer(idCustomer.value)">Delete</button>
+      </div>
+    </fieldset>
+  </form>
+
   <form id="deleteItem">
     <fieldset>
       <legend>Delete Item By id</legend>
@@ -169,20 +183,20 @@
         <input type="text" name="idItem" value="">
       </div>
       </br>
-      <button onclick="deleteItem({{idItem}})">Delete</button>
+      <button onclick="deleteItem(idItem.value)">Delete</button>
       </div>
     </fieldset>
   </form>
 
   <form id="deleteProduct">
     <fieldset>
-      <legend>Delete Product By id</legend>
+      <legend>Delete Product Type By id</legend>
       <div>
         <label for="text">ID:</label>
         <input type="text" name="idProduct" value="">
       </div>
       </br>
-      <button onclick="deleteProduct({{idProduct}})">Delete</button>
+      <button onclick="deleteProduct(idProduct.value)">Delete</button>
       </div>
     </fieldset>
   </form>
@@ -195,7 +209,7 @@
         <input type="text" name="idTransaction" value="">
       </div>
       </br>
-      <button onclick="deleteTransaction({{idTransaction}})">Delete</button>
+      <button onclick="deleteTransaction(idTransaction.value)">Delete</button>
       </div>
     </fieldset>
   </form>
@@ -208,7 +222,7 @@
         <input type="text" name="idShipment" value="">
       </div>
       </br>
-      <button onclick="deleteShipment({{idShipment}})">Delete</button>
+      <button onclick="deleteShipment(idShipment.value)">Delete</button>
       </div>
     </fieldset>
   </form>
@@ -218,14 +232,14 @@
       <legend>Delete Category By id</legend>
       <div>
         <label for="text">ID:</label>
-        <input type="text" name="idInput" value="">
+        <input type="text" name="idCategory" value="">
       </div>
       </br>
-      <button onclick="deleteCategory({{idCategory}})">Delete</button>
+      <button onclick="deleteCategory(idCategory.value)">Delete</button>
       </div>
     </fieldset>
   </form>
-  
+
   <form id="updateCustomer">
     <fieldset>
       <legend>Update Customer</legend>
@@ -249,7 +263,7 @@
       </div>
       </br>
       <div>
-        <button onclick="updateCustomer({{idCustUpdate}})">Update</button>
+        <button onclick="updateCustomer()">Update</button>
       </div>
     </fieldset>
   </form>
@@ -282,7 +296,7 @@
       </div>
       </br>
       <div>
-        <button onclick="updateTransaction({{idTransUpdate}})">Update</button>
+        <button onclick="updateTransaction()">Update</button>
       </div>
     </fieldset>
   </form>
@@ -315,14 +329,14 @@
       </div>
       </br>
       <div>
-        <button onclick="updateShipment({{idShipUpdate}})">Update</button>
+        <button onclick="updateShipment()">Update</button>
       </div>
     </fieldset>
   </form>
-  
+
     <form id="updateProduct">
     <fieldset>
-      <legend>Create Product Type</legend>
+      <legend>Update Product Type</legend>
       <div>
         <label for="text">ID:</label>
         <input type="text" name="idProdUpdate" value="">
@@ -338,7 +352,7 @@
       </div>
       </br>
       <div>
-        <button onclick="updateProduct({{idProdUpdate}})">Update</button>
+        <button onclick="updateProduct()">Update</button>
       </div>
     </fieldset>
   </form>
@@ -376,7 +390,7 @@
       </div>
       </br>
       <div>
-        <button onclick="updateItem({{idItemUpdate}})">Update</button>
+        <button onclick="updateItem()">Update</button>
       </div>
     </fieldset>
   </form>
@@ -394,7 +408,7 @@
       </div>
       </br>
       <div>
-        <button onclick="updateCategory({{idCatUpdate}})">Update</button>
+        <button onclick="updateCategory()">Update</button>
       </div>
     </fieldset>
   </form>
