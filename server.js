@@ -60,6 +60,7 @@ app.use('/customer', require('./customer.js'));
 app.use('/employee', require('./employee.js'));
 app.use('/', require('./create.js'));
 app.use('/', require('./delete.js'));
+app.use('/', require('./update.js'));
 
 var url = require('url');
 
