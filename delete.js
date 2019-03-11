@@ -128,6 +128,26 @@ module.exports = function() {
       }
     });
   });
+  
+    router.delete('/deleteProductCategoryRelationShip/:pid/:cid', function(req, res) {
+    console.log("DELETE CALLED");
+    var mysql = req.app.get('mysql');
+    var inserts = [req.params.pid, req.params.cid];
+    sql = mysql.pool.query(queryDelProductCategoryRel, inserts, function(error, results, fields) {
+      if (error) {
+        console.log("FAILURE ON DELETE");
+        console.log(sql.sql);
+        res.write(JSON.stringify(error));
+        res.status(400);
+        res.end();
+      } else {
+        console.log("SUCCESS ON DELETE");
+        console.log(sql.sql);
+        res.status(202);
+        res.redirect('/employee');
+      }
+    });
+  });
 
 
   return router;
