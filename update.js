@@ -23,7 +23,7 @@ module.exports = function() {
 
   router.put('/updateCustomer', function(req, res) {
     var mysql = req.app.get('mysql');
-    var inserts = [req.body.idCustUpdate, req.body.req.body.fnameInput, req.body.req.body.lnameInput, req.body.req.body.phoneInput];
+    var inserts = [req.body.req.body.fnameInput, req.body.req.body.lnameInput, req.body.req.body.phoneInput,req.body.idCustUpdate];
     sql = mysql.pool.query(queryUpdateCustomer, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
@@ -37,7 +37,7 @@ module.exports = function() {
 
   router.put('/updateTransaction', function(req, res) {
     var mysql = req.app.get('mysql');
-    var inserts = [req.body.idTransUpdate, req.body.req.body.customerInput, req.body.req.body.dateInput, req.body.methodInput, req.body.totalInput];
+    var inserts = [req.body.req.body.customerInput, req.body.req.body.dateInput, req.body.methodInput, req.body.totalInput, req.body.idTransUpdate];
     sql = mysql.pool.query(queryUpdateTransaction, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
@@ -51,7 +51,7 @@ module.exports = function() {
 
   router.put('/updateShipment', function(req, res) {
     var mysql = req.app.get('mysql');
-    var inserts = [req.body.idShipUpdate, req.body.supplierInput, req.body.dateInput, req.body.methodInput, req.body.damagedInput];
+    var inserts = [req.body.supplierInput, req.body.dateInput, req.body.methodInput, req.body.damagedInput,req.body.idShipUpdate];
     sql = mysql.pool.query(queryUpdateShipment, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
@@ -65,7 +65,7 @@ module.exports = function() {
 
   router.put('/updateProduct', function(req, res) {
     var mysql = req.app.get('mysql');
-    ####var inserts = [req.body.idProdUpdate, req.body.nameInput, req.body.priceInput];
+    var inserts = [req.body.nameInput, req.body.priceInput, req.body.idProdUpdate];
     sql = mysql.pool.query(queryUpdateProduct, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
@@ -79,7 +79,7 @@ module.exports = function() {
 
   router.put('/updateItem', function(req, res) {
     var mysql = req.app.get('mysql');
-    var inserts = [req.body.idItemUpdate, req.body.pidInput, req.body.serialInput, req.body.priceInput, req.body.transactionInput];
+    var inserts = [req.body.pidInput, req.body.serialInput, req.body.priceInput, req.body.transactionInput, req.body.idItemUpdate];
     sql = mysql.pool.query(queryUpdateItem, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
@@ -93,7 +93,7 @@ module.exports = function() {
 
   router.put('/updateCategory', function(req, res) {
     var mysql = req.app.get('mysql');
-    var inserts = [req.body.idCatUpdate, req.body.nameInput];
+    var inserts = [req.body.nameInput, req.body.idCatUpdate];
     sql = mysql.pool.query(queryUpdateCategory, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
