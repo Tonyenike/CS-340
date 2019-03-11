@@ -5,7 +5,14 @@ constructor(){
 this.queryText1 = "SELECT * FROM `customer`";
 
 // get all information for all transactions
-this.queryText2 = "SELECT * FROM `transaction`";
+this.queryTextGetTransactions = "SELECT T.id, T.payment_method, T.payment_total, " + 
+                                "C.fname, C.lname, DATE_FORMAT(T.date, '%W, %M %D, %Y') AS date " + 
+                                "FROM transaction T LEFT JOIN customer C ON C.id = T.customer";
+
+this.queryTextGetShipments = "SELECT S.id, S.damaged, S.supplier_name, S.shipping_service_name, " + 
+                             "DATE_FORMAT(S.date, '%W, %M %D, %Y') AS date FROM shipment S";
+
+this.queryTextGetCustomers = "SELECT * FROM customer";
 
 // get all information for all shipments
 this.queryText3 = "SELECT * FROM `shipment`";
@@ -115,7 +122,7 @@ this.queryText34 = "SELET P.id, P.selling_price, P.name, quantities.quantity, CO
 
 this.queryTextCreateTransaction = "INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (?, ?, ?, ?)";
 
-this.queryTextCreateCustomer = "INSERT INTO `customer` (`fname`, `lname`, `phone_number`) VALUES (?, ?, ?)";
+this.queryTextCreateCustomer = "INSERT INTO customer (fname, lname, phone_number) VALUES (?, ?, ?)";
 
 this.queryTextAddInventory = "UPDATE inventory_item SET transactionID = ? WHERE id IN (SELECT * FROM (SELECT id FROM inventory_item WHERE pid = ? AND transactionID IS NULL LIMIT ?) temp_tab)"; 
 
