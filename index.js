@@ -8,7 +8,8 @@ module.exports = function(){
 
     router.get('/', function(req, res){
             var context = {};
-            res.status(200).render('index', {});
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            res.status(200).render('index', context);
             });
 
     return router;

@@ -1,47 +1,42 @@
 <html>
-        <div id = "content" class = "container">
-        <h1 class = "row"> Welcome to S-Mart, valued customer!</h1>
-		<!-- Your page content goes here. -->
-        <div id = "filter-pages" class = "container-fluid">
-<div class = "row">
-<div id = "category-page" class = "container-fluid">
-<h6>Filter by category</h6>
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="misc-cat" {{michecked}}>
-  <label class="form-check-label">
-    Misc
-  </label>
-</div>
-{{#each cat}}
-<div class="form-check">
-  <input class="form-check-input catbox" type="checkbox" value="" id="{{id}}" {{mchecked}} >
-  <label class="form-check-label">
-    {{name}}
-  </label>
-</div>
-{{/each}}
-</div>
-        </div>
-        <div id = "search-page" class = "container-fluid">
-            <h6> Search for product by name </h6>
-            <input type = "textbox"  id = "namesearch" placeholder = "Product name" value = "{{nameval}}">
-        </div>
-
-        <div id = "money-page" class = "container-fluid">
-            <h6> Limit the price range </h6>
-            <div id = "money-min" class = "form-check">
-                <input type = "checkbox" id = "min-check" {{minchecked}}>Minimum price:
-                <input type = "textbox" id = "min-value" value = "{{minval}}">
+    {{>navbarc}}
+    <div id = "content" class = "container-fluid">
+        <div id = "filter-pages" class = "container-fluid mt-3">
+            <div class = "row">
+                <div id = "category-page" class = "col-md-auto">
+                    <b>Filter by category</b>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="misc-cat" {{michecked}}>
+                        <label class="form-check-label">Misc</label>
+                    </div>
+                    {{#each cat}}
+                    <div class="form-check">
+                        <input class="form-check-input catbox" type="checkbox" value="" id="{{id}}" {{mchecked}} >
+                        <label class="form-check-label">{{name}}</label>
+                    </div>
+                    {{/each}}
+                </div>
+                <div id = "money-page" class = "col-2">
+                    <b> Limit the price range </b>
+                    <div id = "money-min" class = "form-group">
+                        <input type = "checkbox" id = "min-check" {{minchecked}}>
+                        <label for = "min-value">Minimum price:</label>
+                        <input type = "textbox" class = "form-control" id = "min-value" value = "{{minval}}">
+                    </div>
+                    <div id = "money-max" class = "form-group">
+                        <input type = "checkbox" id = "max-check" {{maxchecked}}>
+                        <label for = "max-value">Maximum price:</label>
+                        <input type = "textbox" class = "form-control" id = "max-value" value = "{{maxval}}">
+                    </div>
+                </div>
+                <div id = "search-page" class = "col-3">
+                    <b> Search for product by name </b>
+                    <input type = "textbox"  class = "form-control" id = "namesearch" placeholder = "Product name" value = "{{nameval}}">
+                </div>
             </div>
-            <div id = "money-max" class = "form-check">
-                <input type = "checkbox" id = "max-check" {{maxchecked}}>Maximum price:
-                <input type = "textbox" id = "max-value" value = "{{maxval}}">
+            <div class = "form-group">
+                <button id = "filter-button" class = "btn btn-secondary" onclick = "filterproducts()">Apply filters</button>
             </div>
-        </div>
-        <div class = "container-fluid">
-        <button id = "filter-button" class = "btn-primary form-row" onclick = "filterproducts()">Apply filters</button>
-        </div>
-        </div>
         </div>
 
         <table id = "products" class = "table table-sm table-striped table-bordered" >
@@ -57,35 +52,33 @@
                 {{/each}}
             </tbody>
         </table>
-        <div id = "button-opts">
-            <div id = "payment-wrapper">
-            Payment method:
-            <select id = "payment-method">
-                <option name = "card">Card</option>
-                <option name = "cash">Cash</option>
-                <option name = "check">Check</option>
-            </select>
+        <div id = "button-opts" class = "container-fluid">
+            <div id = "payment-wrapper" class = "col-1 form-group">
+                <label for = "payment-method">Payment method:</label>
+                <select id = "payment-method" class = "form-control">
+                    <option name = "card">Card</option>
+                    <option name = "cash">Cash</option>
+                    <option name = "check">Check</option>
+                </select>
             </div>
-            <div id = "customer-info" class = "row no-gutters">
-            <div class = "column">
+            <div class = "form-group mt-3">                 
+                <button id = "order" class = "btn btn-primary" onclick = "orderproducts()">Order selected products</button>
+            </div>
             <h4>OPTIONAL: enter your info:</h4>
+            <div id = "customer-info" class = "row">
+                    <div class = "col-3">
+                        <label for = "fname">First name:</label>
+                        <input type = "textbox" class = "form-control" id = "fname">                   
+                    </div>
+                    <div class = "col-3">
+                        <label for = "lname">Last name:</label>
+                        <input type = "textbox"  class = "form-control" id = "lname">
+                    </div>
+                    <div class = "col-3">
+                        <label for = "pnumber">Phone number:</label>
+                        <input type = "textbox" class = "form-control" id = "pnumber">
+                    </div>
             </div>
-            <div id = "custuff">
-            <div class = "column">
-            First name:
-            <input type = "textbox" id = "fname">                   
-            </div>
-            <div class = "column">
-            Last name:
-            <input type = "textbox"  id = "lname">
-            </div>
-            <div class = "column">
-            Phone number:
-            <input type = "textbox" id = "pnumber">
-            </div>
-            </div>
-            </div>                 
-            <button id = "order" onclick = "orderproducts()">Order selected products</button>
         </div>
-        </div>
+    </div>
 </html>
