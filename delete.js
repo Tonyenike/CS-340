@@ -21,21 +21,26 @@ module.exports = function() {
   queryDelCategory = "DELETE FROM `category` WHERE id = ?";
 
   router.delete('/deleteCustomer/:id', function(req, res) {
+    console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelCustomer, inserts, function(error, results, fields) {
       if (error) {
+        console.log("FAILURE ON DELETE");
         res.write(JSON.stringify(error));
         res.status(400);
         res.end();
       } else {
-        res.status(202).end();
+        console.log("SUCCESS ON DELETE");
+        console.log(sql.sql);
+        res.status(202);
         res.redirect('/employee');
       }
     });
   });
 
   router.delete('/deleteTransaction/:id', function(req, res) {
+    console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelTransaction, inserts, function(error, results, fields) {
@@ -44,13 +49,16 @@ module.exports = function() {
         res.status(400);
         res.end();
       } else {
-        res.status(202).end();
+        console.log("SUCCESS ON DELETE");
+        console.log(sql.sql);
+        res.status(202);
         res.redirect('/employee');
       }
     });
   });
 
   router.delete('/deleteShipment/:id', function(req, res) {
+    console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelShipment, inserts, function(error, results, fields) {
@@ -59,13 +67,16 @@ module.exports = function() {
         res.status(400);
         res.end();
       } else {
-        res.status(202).end();
+        console.log("SUCCESS ON DELETE");
+        console.log(sql.sql);
+        res.status(202);
         res.redirect('/employee');
       }
     });
   });
 
   router.delete('/deleteProduct/:id', function(req, res) {
+    console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelProduct, inserts, function(error, results, fields) {
@@ -74,13 +85,16 @@ module.exports = function() {
         res.status(400);
         res.end();
       } else {
-        res.status(202).end();
+        console.log("SUCCESS ON DELETE");
+        console.log(sql.sql);
+        res.status(202);
         res.redirect('/employee');
       }
     });
   });
 
   router.delete('/deleteItem/:id', function(req, res) {
+    console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelItem, inserts, function(error, results, fields) {
@@ -89,13 +103,16 @@ module.exports = function() {
         res.status(400);
         res.end();
       } else {
-        res.status(202).end();
+        console.log("SUCCESS ON DELETE");
+        console.log(sql.sql);
+        res.status(202);
         res.redirect('/employee');
       }
     });
   });
 
   router.delete('/deleteCategory/:id', function(req, res) {
+    console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelCategory, inserts, function(error, results, fields) {
@@ -104,7 +121,9 @@ module.exports = function() {
         res.status(400);
         res.end();
       } else {
-        res.status(202).end();
+        console.log("SUCCESS ON DELETE");
+        console.log(sql.sql);
+        res.status(202);
         res.redirect('/employee');
       }
     });
