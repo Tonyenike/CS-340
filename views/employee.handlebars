@@ -319,6 +319,29 @@
       </div>
     </fieldset>
   </form>
+  
+    <form id="updateProduct">
+    <fieldset>
+      <legend>Create Product Type</legend>
+      <div>
+        <label for="text">ID:</label>
+        <input type="text" name="idProdUpdate" value="">
+      </div>
+      <div>
+        <label for="text">Name:</label>
+        <input type="text" name="nameInput" value="">
+      </div>
+      </br>
+      <div>
+        <label for="text">Price:</label>
+        <input type="text" name="priceInput" value="">
+      </div>
+      </br>
+      <div>
+        <button onclick="updateProduct({{idProdUpdate}})">Update</button>
+      </div>
+    </fieldset>
+  </form>
 
   <form id="updateItem">
     <fieldset>
