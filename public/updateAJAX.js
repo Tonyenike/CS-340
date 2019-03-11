@@ -1,6 +1,7 @@
-function updateCustomer(id) {
+function updateCustomer() {
+  console.log("PUT CALLED");
   $.ajax({
-    url: '/updateCustomer/' + id,
+    url: '/updateCustomer',
     type: 'PUT',
     data: $('#updateCustomer').serialize(),
     success: function(result) {
@@ -9,9 +10,10 @@ function updateCustomer(id) {
   })
 };
 
-function updateTransaction(id) {
+function updateTransaction() {
+  console.log("PUT CALLED");
   $.ajax({
-    url: '/updateTransaction/' + id,
+    url: '/updateTransaction',
     type: 'PUT',
     data: $('#updateTransaction').serialize(),
     success: function(result) {
@@ -20,9 +22,10 @@ function updateTransaction(id) {
   })
 };
 
-function updateShipment(id) {
+function updateShipment() {
+  console.log("PUT CALLED");
   $.ajax({
-    url: '/updateShipment/' + id,
+    url: '/updateShipment',
     type: 'PUT',
     data: $('#updateShipment(').serialize(),
     success: function(result) {
@@ -31,9 +34,10 @@ function updateShipment(id) {
   })
 };
 
-function updateItem(id) {
+function updateItem() {
+  console.log("PUT CALLED");
   $.ajax({
-    url: '/updateItem/' + id,
+    url: '/updateItem',
     type: 'PUT',
     data: $('#updateItem').serialize(),
     success: function(result) {
@@ -42,9 +46,10 @@ function updateItem(id) {
   })
 };
 
-function updateCategory(id) {
+function updateCategory() {
+  console.log("PUT CALLED");
   $.ajax({
-    url: '/updateCategory/' + id,
+    url: '/updateCategory',
     type: 'PUT',
     data: $('#updateCategory').serialize(),
     success: function(result) {
