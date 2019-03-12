@@ -1,0 +1,52 @@
+{{>navbar}}
+
+    <div class = "container-fluid mb-5">
+        <table id = "transactions" class = "table table-sm table-striped table-bordered mb-5" >
+            <thead class = "thead-dark" >
+                <th scope = "col" onclick = "sortTable(0)" >Transaction ID</th>
+                <th scope = "col" onclick = "sortTable(1)" >Customer first name</th>
+                <th scope = "col" onclick = "sortTable(2)" >Customer last name</th>
+                <th scope = "col" onclick = "sortTable(3)" >Payment method</th>
+                <th scope = "col" onclick = "sortTable(4)" >Payment total</th>
+                <th scope = "col" onclick = "sortTable(5)" >Date</th>
+            </thead>
+            <tbody>
+                {{#each transactions}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{#if fname}}{{fname}}{{else}}---{{/if}}</td>
+                    <td>{{#if lname}}{{lname}}{{else}}---{{/if}}</td>
+                    <td>{{payment_method}}</td>
+                    <td>${{payment_total}}</td>
+                    <td>{{date}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <h2> Products purchased </h2>
+        <table id = "transitems" class = "table table-sm table-striped table-bordered" >
+            <thead class = "thead-dark" >
+                <th scope = "col" onclick = "sortTable(0)" >Item ID</th>
+                <th scope = "col" onclick = "sortTable(1)" >Name</th>
+                <th scope = "col" onclick = "sortTable(2)" >Serial number</th>
+                <th scope = "col" onclick = "sortTable(3)" >Price</th>
+                <th scope = "col" onclick = "sortTable(4)" >Refund item</th>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{serial}}</td>
+                    <td>${{selling_price}}</td>
+                    <td><input type = "checkbox"></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+
+        <button class = "btn btn-primary">Refund entire transaction</button>
+        <button class = "btn btn-primary">Refund selected items</button>
+    </div>

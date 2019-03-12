@@ -1,7 +1,6 @@
 {{>navbar}}
 
     <div class = "container-fluid mb-5">
-    
         <table id = "shipments" class = "table table-sm table-striped table-bordered" >
             <thead class = "thead-dark" >
                 <th scope = "col" onclick = "sortTable(0)" >Shipment ID</th>
@@ -13,7 +12,7 @@
             <tbody>
                 {{#each shipments}}
                 <tr>
-                    <td><a href = "/employee/inspectshipment/{{id}}" class = "text-primary">{{id}}</a></td>
+                    <td>{{id}}</td>
                     <td>{{supplier_name}}</td>
                     <td>{{shipping_service_name}}</td>
                     <td>{{#if damaged}}Damaged{{else}}Intact{{/if}}</td>
@@ -23,5 +22,23 @@
             </tbody>
         </table>
 
-        <button class = "btn btn-primary rounded-circle">+</button>
+        <h2> Products received </h2>
+        <table id = "transitems" class = "table table-sm table-striped table-bordered" >
+            <thead class = "thead-dark" >
+                <th scope = "col" onclick = "sortTable(0)" >Item ID</th>
+                <th scope = "col" onclick = "sortTable(1)" >Name</th>
+                <th scope = "col" onclick = "sortTable(2)" >Serial number</th>
+                <th scope = "col" onclick = "sortTable(3)" >Wholesale cost</th>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{serial}}</td>
+                    <td>${{buying_price}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </div>

@@ -81,7 +81,78 @@ module.exports = function(){
             function complete(){
                 res.render('empshipments', context);
             }
+    });
+
+    router.get('/inspecttransaction/:id', function(req, res){
+            var context = {};
+            var completeCounter = 0;
+            var mysql = req.app.get('mysql');
+            var query1 = queries.getTransactionItems;
+            var query2 = queries.getTransactionInfo;
+            var inserts = [req.params.id];
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            
+            mysql.pool.query(query1, inserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.items = results;
+                complete();
             });
+            mysql.pool.query(query2, inserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.transactions = results;
+                complete();
+            });
+
+
+            
+            function complete(){
+                completeCounter = completeCounter + 1;
+                if(completeCounter >= 2)
+                    res.render('inspecttransaction', context);
+            }
+
+    });
+    
+    router.get('/inspectshipment/:id', function(req, res){
+            var context = {};
+            var completeCounter = 0;
+            var mysql = req.app.get('mysql');
+            var query1 = queries.getShipmentItems;
+            var query2 = queries.getShipmentInfo;
+            var inserts = [req.params.id];
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            mysql.pool.query(query1, inserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.items = results;
+                complete();
+            });
+            mysql.pool.query(query2, inserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.shipments = results;
+                complete();
+            });
+
+
+            
+            function complete(){
+                completeCounter = completeCounter + 1;
+                if(completeCounter >= 2)
+                    res.render('inspectshipment', context);
+            }
+
+    });
     
     return router;
 }();

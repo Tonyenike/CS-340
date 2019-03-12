@@ -128,6 +128,18 @@ this.queryTextAddInventory = "UPDATE inventory_item SET transactionID = ? WHERE 
 
 this.queryTextGetQty = "SELECT COUNT(id) FROM inventory_item WHERE pid = ? GROUP BY pid";
 
+this.getTransactionItems = "SELECT I.id, P.name, P.selling_price, I.serial FROM inventory_item I INNER JOIN " +
+                           "product P ON P.id = I.pid WHERE I.transactionID = ?";
+
+this.getTransactionInfo = "SELECT T.id, C.fname, C.lname, T.payment_method, T.payment_total, " +
+                          "DATE_FORMAT(T.date, '%W, %M %D, %Y') AS date FROM transaction T LEFT JOIN " +
+                          "customer C ON C.id = T.customer WHERE T.id = ?";
+
+this.getShipmentItems = "SELECT I.id, P.name, I.buying_price, I.serial FROM inventory_item I INNER JOIN " +
+                           "product P ON P.id = I.pid WHERE I.shipmentID = ?";
+
+this.getShipmentInfo = "SELECT S.id, S.damaged, S.supplier_name, S.shipping_service_name, " +
+                          "DATE_FORMAT(S.date, '%W, %M %D, %Y') AS date FROM shipment S WHERE S.id = ?";
 }
 }
 
