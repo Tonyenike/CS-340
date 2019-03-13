@@ -1,0 +1,79 @@
+<form id="additem" action="/createItem" method="post">
+  <fieldset>
+    <legend>Create Inventory Item</legend>
+    <div>
+      <label for="text">Product ID:</label>
+      <input type="text" name="pidInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Serial#:</label>
+      <input type="text" name="serialInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Price:</label>
+      <input type="text" name="priceInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Shipment:</label>
+      <input type="text" name="shipmentInput" value="">
+    </div>
+    </br>
+    <div>
+      <label><input type="submit" value="Submit"></label>
+    </div>
+  </fieldset>
+</form>
+
+<form id="deleteItem">
+  <fieldset>
+    <legend>Delete Item By id</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idItem" value="">
+    </div>
+    </br>
+    <button onclick="deleteItem(idItem.value)">Delete</button>
+    </div>
+  </fieldset>
+</form>
+
+<form id="updateItem">
+  <fieldset>
+    <legend>Update Inventory Item</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idItemUpdate" value="">
+    </div>
+    <div>
+      <label for="text">Product ID:</label>
+      <input type="text" name="pidInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Serial#:</label>
+      <input type="text" name="serialInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Price:</label>
+      <input type="text" name="priceInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Shipment:</label>
+      <input type="text" name="shipmentInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Transaction:</label>
+      <input type="text" name="transactionInput" value="">
+    </div>
+    </br>
+    <div>
+      <button onclick="updateItem()">Update</button>
+    </div>
+  </fieldset>
+</form>

@@ -1,0 +1,74 @@
+<form id="addshipment" action="/createShipment" method="post">
+  <fieldset>
+    <legend>Create Shipment</legend>
+    <div>
+      <label for="text">Supplier:</label>
+      <input type="text" name="supplierInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Date:</label>
+      <input type="text" name="dateInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Shipping Method:</label>
+      <input type="text" name="serviceInput" value="">
+    </div>
+    </br>
+    <div>
+      <label id="damCheck" for="text">Damaged:</label>
+      <input type="text" name="damagedInput" value="">
+    </div>
+    </br>
+    <div>
+      <label><input type="submit" value="Submit"></label>
+    </div>
+  </fieldset>
+</form>
+
+<form id="deleteShipment">
+  <fieldset>
+    <legend>Delete Shipment By id</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idShipment" value="">
+    </div>
+    </br>
+    <button onclick="deleteShipment(idShipment.value)">Delete</button>
+    </div>
+  </fieldset>
+</form>
+
+<form id="updateShipment">
+  <fieldset>
+    <legend>Update Shipment</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idShipUpdate" value="">
+    </div>
+    <div>
+      <label for="text">Supplier:</label>
+      <input type="text" name="supplierInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Date:</label>
+      <input type="text" name="dateInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Shipping Service:</label>
+      <input type="text" name="serviceInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Damaged:</label>
+      <input type="text" name="damagedInput" value="">
+    </div>
+    </br>
+    <div>
+      <button onclick="updateShipment()">Update</button>
+    </div>
+  </fieldset>
+</form>

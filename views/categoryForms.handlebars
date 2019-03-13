@@ -1,0 +1,81 @@
+<form id="addcategory" action="/createCategory" method="post">
+  <fieldset>
+    <legend>Create Category</legend>
+    <div>
+      <label for="text">Category Name:</label>
+      <input type="text" name="nameInput" value="">
+    </div>
+    </br>
+    <div>
+      <label><input type="submit" value="Submit"></label>
+    </div>
+  </fieldset>
+</form>
+
+<form id="addtocategory" action="/createProductCategoryRelation" method="post">
+  <fieldset>
+    <legend>Add Product to Category</legend>
+    <div>
+      <label for="text">Category ID:</label>
+      <input type="text" name="cidInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Product ID:</label>
+      <input type="text" name="pidInput" value="">
+    </div>
+    </br>
+    <div>
+      <label><input type="submit" value="Submit"></label>
+    </div>
+  </fieldset>
+</form>
+
+<form id="deleteCategory">
+  <fieldset>
+    <legend>Delete Category By id</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idCategory" value="">
+    </div>
+    </br>
+    <button onclick="deleteCategory(idCategory.value)">Delete</button>
+    </div>
+  </fieldset>
+</form>
+
+<form id="deleteProductCategory">
+  <fieldset>
+    <legend>Delete Product Category Relationship</legend>
+    <div>
+      <label for="text">PID:</label>
+      <input type="text" name="Pid" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">CID:</label>
+      <input type="text" name="Cid" value="">
+    </div>
+    <button onclick="deleteProductCategoryRel(Pid.value, Cid.value)">Delete</button>
+    </div>
+  </fieldset>
+</form>
+
+<form id="updateCategory">
+  <fieldset>
+    <legend>Update Category</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idCatUpdate" value="">
+    </div>
+    <div>
+      <label for="text">Category Name:</label>
+      <input type="text" name="nameInput" value="">
+    </div>
+    </br>
+    <div>
+      <button onclick="updateCategory()">Update</button>
+    </div>
+  </fieldset>
+</form>
+</form>

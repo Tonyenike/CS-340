@@ -1,0 +1,64 @@
+<form id="addcustomer" action="/createCustomer" method="post">
+  <fieldset>
+    <legend>Create Customer</legend>
+    <div>
+      <label for="text">First Name:</label>
+      <input type="text" name="fnameInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Last Name:</label>
+      <input type="text" name="lnameInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Phone Number:</label>
+      <input type="text" name="phoneInput" value="">
+    </div>
+    </br>
+    <div>
+      <label><input type="submit" value="Submit"></label>
+    </div>
+  </fieldset>
+</form>
+
+<form id="deleteCustomer">
+  <fieldset>
+    <legend>Delete Customer By id</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idCustomer" value="">
+    </div>
+    </br>
+    <button onclick="deleteCustomer(idCustomer.value)">Delete</button>
+    </div>
+  </fieldset>
+</form>
+
+<form id="updateCustomer">
+  <fieldset>
+    <legend>Update Customer</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idCustUpdate" value="">
+    </div>
+    <div>
+      <label for="text">First Name:</label>
+      <input type="text" name="fnameInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Last Name:</label>
+      <input type="text" name="lnameInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Phone Number:</label>
+      <input type="text" name="phoneInput" value="">
+    </div>
+    </br>
+    <div>
+      <button onclick="updateCustomer()">Update</button>
+    </div>
+  </fieldset>
+</form>

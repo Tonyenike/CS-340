@@ -1,0 +1,74 @@
+<form id="addtransaction" action="/createTransaction" method="post">
+  <fieldset>
+    <legend>Create Transaction</legend>
+    <div>
+      <label for="text">Customer ID:</label>
+      <input type="text" name="customerInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Date:</label>
+      <input type="text" name="dateInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Payment Method:</label>
+      <input type="text" name="methodInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Total Input:</label>
+      <input type="text" name="totalInput" value="">
+    </div>
+    </br>
+    <div>
+      <label><input type="submit" value="Submit"></label>
+    </div>
+  </fieldset>
+</form>
+
+<form id="deleteTransaction" action="" method="">
+  <fieldset>
+    <legend>Delete Transaction By id</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idTransaction" value="">
+    </div>
+    </br>
+    <button onclick="deleteTransaction(idTransaction.value)">Delete</button>
+    </div>
+  </fieldset>
+</form>
+
+<form id="updateTransaction">
+  <fieldset>
+    <legend>Update Transaction</legend>
+    <div>
+      <label for="text">ID:</label>
+      <input type="text" name="idTransUpdate" value="">
+    </div>
+    <div>
+      <label for="text">Customer ID:</label>
+      <input type="text" name="customerInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Date:</label>
+      <input type="text" name="dateInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Payment Method:</label>
+      <input type="text" name="methodInput" value="">
+    </div>
+    </br>
+    <div>
+      <label for="text">Total Input:</label>
+      <input type="text" name="totalInput" value="">
+    </div>
+    </br>
+    <div>
+      <button onclick="updateTransaction()">Update</button>
+    </div>
+  </fieldset>
+</form>
