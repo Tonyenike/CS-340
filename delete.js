@@ -21,18 +21,18 @@ module.exports = function() {
   queryDelCategory = "DELETE FROM `category` WHERE id = ?";
 
   router.delete('/deleteCustomer/:id', function(req, res) {
-    console.log("DELETE CALLED");
+    //console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelCustomer, inserts, function(error, results, fields) {
       if (error) {
-        console.log("FAILURE ON DELETE");
+        //console.log("FAILURE ON DELETE");
         res.write(JSON.stringify(error));
-        res.status(400);
+        //res.status(400);
         res.end();
       } else {
-        console.log("SUCCESS ON DELETE");
-        console.log(sql.sql);
+        //console.log("SUCCESS ON DELETE");
+        //console.log(sql.sql);
         res.status(202);
         res.redirect('/employee');
       }
@@ -40,17 +40,17 @@ module.exports = function() {
   });
 
   router.delete('/deleteTransaction/:id', function(req, res) {
-    console.log("DELETE CALLED");
+    //console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelTransaction, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
-        res.status(400);
+        //res.status(400);
         res.end();
       } else {
-        console.log("SUCCESS ON DELETE");
-        console.log(sql.sql);
+        //console.log("SUCCESS ON DELETE");
+        //console.log(sql.sql);
         res.status(202);
         res.redirect('/employee');
       }
@@ -58,17 +58,17 @@ module.exports = function() {
   });
 
   router.delete('/deleteShipment/:id', function(req, res) {
-    console.log("DELETE CALLED");
+   // console.log("DELETE CALLED");
     var mysql = req.app.get('mysql');
     var inserts = [req.params.id];
     sql = mysql.pool.query(queryDelShipment, inserts, function(error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
-        res.status(400);
+        //res.status(400);
         res.end();
       } else {
-        console.log("SUCCESS ON DELETE");
-        console.log(sql.sql);
+        // console.log("SUCCESS ON DELETE");
+        //console.log(sql.sql);
         res.status(202);
         res.redirect('/employee');
       }

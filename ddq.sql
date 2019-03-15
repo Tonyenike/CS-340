@@ -85,7 +85,7 @@ CREATE TABLE `inventory_item` (
   KEY `transactionID` (`transactionID`),
   CONSTRAINT `inventory_item_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `product` (`id`),
   CONSTRAINT `inventory_item_ibfk_2` FOREIGN KEY (`shipmentID`) REFERENCES `shipment` (`id`),
-  CONSTRAINT `inventory_item_ibfk_3` FOREIGN KEY (`transactionID`) REFERENCES `transaction` (`id`)
+  CONSTRAINT `inventory_item_ibfk_3` FOREIGN KEY (`transactionID`) REFERENCES `transaction` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -193,7 +193,7 @@ CREATE TABLE `transaction` (
   `payment_total` float NOT NULL,
   PRIMARY KEY (`id`),
   KEY `customer` (`customer`),
-  CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customer` (`id`)
+  CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customer` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -203,7 +203,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,1,'2019-01-09','card',250),(2,2,'2019-01-09','check',799.99),(3,3,'2019-01-10','cash',250),(4,1,'2019-01-12','check',479.99);
+INSERT INTO `transaction` VALUES (1,1,'2019-01-09','Card',250),(2,2,'2019-01-09','Check',799.99),(3,3,'2019-01-10','Cash',250),(4,1,'2019-01-12','Check',479.99);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
