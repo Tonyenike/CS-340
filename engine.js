@@ -114,7 +114,7 @@ this.queryText32 = "UPDATE product SET name = :name_of_choice, selling_price = :
 // update a row in the CATEGORY table
 this.queryText33 = "UPDATE category SET name = :name_of_choice WHERE id = :id_to_change";
 
-this.queryText34 = "SELET P.id, P.selling_price, P.name, quantities.quantity, COUNT(PC.cid) FROM product P " +
+this.queryText34 = "SELECT P.id, P.selling_price, P.name, quantities.quantity FROM product P " +
                    "LEFT JOIN product_category PC ON PC.pid = P.id " +
                    "LEFT JOIN (SELECT P.id, COUNT(I.id) AS quantity FROM product P INNER JOIN inventory_item I ON I.pid = P.id " +
                    "WHERE I.transactionID IS NULL GROUP BY P.id) AS quantities ON quantities.id = P.id " + 

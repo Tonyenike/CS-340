@@ -1,6 +1,11 @@
-function sortTable(n) {
+function sortTable(name, style, n) {
+  //style == 1: strings
+  //style == 2: numbers
+  //style == 3: $numbers (money)
+  //style == 4: dates
+
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("products");
+  table = document.getElementById(name);
   switching = true;
   //Set the sorting direction to ascending:
   dir = "asc";
@@ -22,36 +27,52 @@ function sortTable(n) {
       /*check if the two rows should switch place,
       based on the direction, asc or desc:*/
       if (dir == "asc") {
-        if(n === 1 || n === 2){
-            var yeet = parseFloat(x.innerHTML.substring(2-n));
-            var yote = parseFloat(y.innerHTML.substring(2-n));
+        if(style === 1){
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch= true;
+                break;
+            }
+        }
+        else if(style === 2){
+            var yeet = parseFloat(x.innerHTML);
+            var yote = parseFloat(y.innerHTML);
             if(yeet > yote){
                 shouldSwitch=true;
                 break;
             }
         }
-        else{
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
+        else if(style === 3){
+            var yeet = parseFloat(x.innerHTML.substring(1));
+            var yote = parseFloat(y.innerHTML.substring(1));
+            if(yeet > yote){
+                shouldSwitch=true;
+                break;
+            }
         }
       } else if (dir == "desc") {
-        if(n === 1 || n === 2){
-            var yeet = parseFloat(x.innerHTML.substring(2-n));
-            var yote = parseFloat(y.innerHTML.substring(2-n));
+        if(style === 1){
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+            }
+        }
+        else if(style === 2){
+            var yeet = parseFloat(x.innerHTML);
+            var yote = parseFloat(y.innerHTML);
             if(yeet < yote){
                 shouldSwitch=true;
                 break;
             }
         }
-        else{
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
+        else if(style === 3){
+            var yeet = parseFloat(x.innerHTML.substring(1));
+            var yote = parseFloat(y.innerHTML.substring(1));
+            if(yeet < yote){
+                shouldSwitch=true;
+                break;
+            }
         }
       }
     }

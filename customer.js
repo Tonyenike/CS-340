@@ -240,10 +240,18 @@ module.exports = function(){
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
 
             if(doOrder){
-                placeOrder(orderInfo, res, mysql, complete);
-                maxval = maxval + orderInfo.productQTY.length;
+                placeOrder(orderInfo, res, mysql, completed);
+                var maxvalue = orderInfo.productQTY.length;
+                var comps = 0;
+                function completed(){
+                    comps = comps + 1;
+                    if(comps >= maxvalue){
+                        getCategories(res, mysql, context, complete);
+                        getProducts(res, mysql, context, complete);
+                    }
+                }
             }
-            if(doFilter){
+            else if(doFilter){
                 getCategoriesSpecial(modRes, res, mysql, context, complete);
                 getProductsFiltered(modRes, res, mysql, context, complete);
             }
@@ -256,6 +264,7 @@ module.exports = function(){
                 if(qs >= maxval){
                     res.render('customer', context);
                     doFilter = false;
+                    doOrder = false;
                     modRes = {};
                 }
             }
