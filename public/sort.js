@@ -3,6 +3,7 @@ function sortTable(name, style, n) {
   //style == 2: numbers
   //style == 3: $numbers (money)
   //style == 4: dates
+  //style == 5: linked numbers
 
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById(name);
@@ -24,6 +25,10 @@ function sortTable(name, style, n) {
       one from current row and one from the next:*/
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
+      if(style === 5){
+        x = x.childNodes[0];
+        y = y.childNodes[0];
+      }
       /*check if the two rows should switch place,
       based on the direction, asc or desc:*/
       if (dir == "asc") {
@@ -34,7 +39,7 @@ function sortTable(name, style, n) {
                 break;
             }
         }
-        else if(style === 2){
+        else if(style === 2 || style === 5){
             var yeet = parseFloat(x.innerHTML);
             var yote = parseFloat(y.innerHTML);
             if(yeet > yote){
@@ -58,7 +63,7 @@ function sortTable(name, style, n) {
                 break;
             }
         }
-        else if(style === 2){
+        else if(style === 2 || style === 5){
             var yeet = parseFloat(x.innerHTML);
             var yote = parseFloat(y.innerHTML);
             if(yeet < yote){

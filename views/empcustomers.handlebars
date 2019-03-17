@@ -3,10 +3,10 @@
     <div class = "container-fluid mb-5">
         <table id = "customers" class = "table table-sm table-striped table-bordered" >
             <thead class = "thead-dark" >
-                <th scope = "col" onclick = "sortTable(0)" >Customer ID</th>
-                <th scope = "col" onclick = "sortTable(1)" >First name</th>
-                <th scope = "col" onclick = "sortTable(2)" >Last name</th>
-                <th scope = "col" onclick = "sortTable(3)" >Phone number</th>
+                <th scope = "col" onclick = "sortTable('customers', 2, 0)" >Customer ID</th>
+                <th scope = "col" onclick = "sortTable('customers', 1, 1)" >First name</th>
+                <th scope = "col" onclick = "sortTable('customers', 1, 2)" >Last name</th>
+                <th scope = "col" onclick = "sortTable('customers', 2, 3)" >Phone number</th>
             </thead>
             <tbody>
                 {{#each customers}}

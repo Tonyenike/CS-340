@@ -3,12 +3,12 @@
     <div class = "container-fluid mb-5">
         <table id = "transactions" class = "table table-sm table-striped table-bordered" >
             <thead class = "thead-dark" >
-                <th scope = "col" onclick = "sortTable(0)" >Transaction ID</th>
-                <th scope = "col" onclick = "sortTable(1)" >Customer first name</th>
-                <th scope = "col" onclick = "sortTable(2)" >Customer last name</th>
-                <th scope = "col" onclick = "sortTable(3)" >Payment method</th>
-                <th scope = "col" onclick = "sortTable(4)" >Payment total</th>
-                <th scope = "col" onclick = "sortTable(5)" >Date</th>
+                <th scope = "col" onclick = "sortTable('transactions', 5, 0)" >Transaction ID</th>
+                <th scope = "col" onclick = "sortTable('transactions', 1, 1)" >Customer first name</th>
+                <th scope = "col" onclick = "sortTable('transactions', 1, 2)" >Customer last name</th>
+                <th scope = "col" onclick = "sortTable('transactions', 1, 3)" >Payment method</th>
+                <th scope = "col" onclick = "sortTable('transactions', 3, 4)" >Payment total</th>
+                <th scope = "col" onclick = "sortTable('transactions', 4, 5)" >Date</th>
             </thead>
             <tbody>
                 {{#each transactions}}

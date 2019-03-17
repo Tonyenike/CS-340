@@ -4,11 +4,11 @@
     
         <table id = "shipments" class = "table table-sm table-striped table-bordered" >
             <thead class = "thead-dark" >
-                <th scope = "col" onclick = "sortTable(0)" >Shipment ID</th>
-                <th scope = "col" onclick = "sortTable(1)" >Supplier name</th>
-                <th scope = "col" onclick = "sortTable(2)" >Shipper name</th>
-                <th scope = "col" onclick = "sortTable(3)" >Product status</th>
-                <th scope = "col" onclick = "sortTable(4)" >Date received</th>
+                <th scope = "col" onclick = "sortTable('shipments', 5, 0)" >Shipment ID</th>
+                <th scope = "col" onclick = "sortTable('shipments', 1, 1)" >Supplier name</th>
+                <th scope = "col" onclick = "sortTable('shipments', 1, 2)" >Shipper name</th>
+                <th scope = "col" onclick = "sortTable('shipments', 1, 3)" >Product status</th>
+                <th scope = "col" onclick = "sortTable('shipments', 4, 4)" >Date received</th>
             </thead>
             <tbody>
                 {{#each shipments}}
