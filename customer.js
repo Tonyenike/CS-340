@@ -76,15 +76,12 @@ module.exports = function(){
 
 
     function addOrder(orderInfo, res, query, inserts, mysql, complete){
-        console.log("mysql is", mysql);   
- 
         mysql.pool.query(query, inserts, function(error, results, fields){
                 if(error){
                     res.write(JSON.stringify(error));
                     res.end();
                 }
                 else{
-                    console.log(results);
                     add_inventory(orderInfo, res, results, mysql, complete);
                 }
         });

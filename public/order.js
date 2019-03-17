@@ -96,7 +96,7 @@ function orderproducts(){
     // toFixed function prints a two-point floating point value (the dollars and cents!)
     alert("Order succesfully submitted. Your total is: $" + pricetotal.toFixed(2)); 
     socket.emit("products-ordered", {paymentMethod: paymentMethod, 
-                                     paymentTotal: pricetotal, 
+                                     paymentTotal: pricetotal.toFixed(2), 
                                      productID: productId, 
                                      productQTY: productQty,
                                      customerbool: customerbool,

@@ -14,8 +14,14 @@ this.queryTextGetShipments = "SELECT S.id, S.damaged, S.supplier_name, S.shippin
 
 this.queryTextGetCustomers = "SELECT * FROM customer";
 
+this.deleteTransaction = "DELETE FROM transaction WHERE id = ?";
+
 // get all information for all shipments
 this.queryText3 = "SELECT * FROM `shipment`";
+
+this.modifyTransactionTotal = "UPDATE transaction SET payment_total = ? WHERE id = ?";
+this.modifyTransactionItems = "UPDATE inventory_item SET transactionID = NULL WHERE id = ?";
+
 
 // get all information for all products
 this.queryText4 = "SELECT * FROM product P " +

@@ -203,7 +203,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,1,'2019-01-09','Card',250),(2,2,'2019-01-09','Check',799.99),(3,3,'2019-01-10','Cash',250),(4,1,'2019-01-12','Check',479.99);
+INSERT INTO `transaction` VALUES (1,1,'2019-01-09','Card',250),(2,2,'2019-01-09','Check',799.99),(3,3,'2019-01-10','Cash',250),(4,1,'2019-01-12','Check',579.99);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
