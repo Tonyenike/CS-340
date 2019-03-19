@@ -34,7 +34,25 @@ module.exports = function(){
             var context = {};
             res.render('employee', context);
             });
-    
+
+    router.get('/addNewShipment', function(req, res){
+
+            var context = {};
+            var mysql = req.app.get('mysql');
+            var query = queries.getAllProducts;
+            context.jsscripts=["sort.js", "inserter.js", "shipper.js"];
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            mysql.pool.query(query, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.products = results;
+                res.render('addNewShipment', context);
+            });
+
+    });
+
     router.get('/customers', function(req, res){
             var context = {};
             var mysql = req.app.get('mysql');

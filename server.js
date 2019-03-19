@@ -76,5 +76,7 @@ app.get('/', function(req,res){
 
 app.use(function(req,res){
   res.status(404);
-  res.render('404');
+  context = {};
+  context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+  res.render('404', context);
 });

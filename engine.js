@@ -9,6 +9,8 @@ this.queryTextGetTransactions = "SELECT T.id, T.payment_method, T.payment_total,
                                 "C.fname, C.lname, DATE_FORMAT(T.date, '%W, %M %D, %Y') AS date " + 
                                 "FROM transaction T LEFT JOIN customer C ON C.id = T.customer";
 
+this.getAllProducts = "SELECT * FROM product";
+
 this.queryTextGetShipments = "SELECT S.id, S.damaged, S.supplier_name, S.shipping_service_name, " + 
                              "DATE_FORMAT(S.date, '%W, %M %D, %Y') AS date FROM shipment S";
 

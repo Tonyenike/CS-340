@@ -1,0 +1,50 @@
+{{>navbar}}
+
+    <div class = "container-fluid mb-5">
+        <h2> New shipment </h2>
+        <table id = "shipments" class = "table table-sm table-striped table-bordered" >
+            <thead class = "thead-dark" >
+                <th scope = "col" >Supplier name</th>
+                <th scope = "col" >Shipper name</th>
+                <th scope = "col" >Product status</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type = "textbox" class = "form-control"></td>
+                    <td><input type = "textbox" class = "form-control"></td>
+                    <td><select class = "form-control">
+                            <option>Intact</option>
+                            <option>Damaged</option>
+                    </select></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3> Merchandise received </h3>
+        <table id = "shipment-items" class = "table table-sm table-striped table-bordered" >
+            <thead class = "thead-dark" >
+                <th scope = "col" >Product</th>
+                <th scope = "col" >Serial number</th>
+                <th scope = "col" >Wholesale cost</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id = 'cell-1-stuff'>
+                        <select class = 'form-control'>
+                            {{#each products}}
+                            <option>{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td><input type = "textbox" class = "form-control"></td>
+                    <td><input type = "textbox" class = "form-control" value = "00.00"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick = "addNewRow()" class = "btn btn-secondary">Add another item received</button>
+        <button onclick = "removeRow()" class = "btn btn-secondary">Remove the bottom item</button>
+        <button onclick = "addNewShipment()" class = "btn btn-primary">Add this shipment</button>
+    </div>
+
+
+
