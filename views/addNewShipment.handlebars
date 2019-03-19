@@ -10,8 +10,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type = "textbox" class = "form-control"></td>
-                    <td><input type = "textbox" class = "form-control"></td>
+                    <td><input type = "textbox" id = "supplier-name" class = "form-control"></td>
+                    <td><input type = "textbox" id = "shipper-name" class = "form-control"></td>
                     <td><select class = "form-control">
                             <option>Intact</option>
                             <option>Damaged</option>
@@ -30,14 +30,14 @@
             <tbody>
                 <tr>
                     <td id = 'cell-1-stuff'>
-                        <select class = 'form-control'>
+                        <select class = 'form-control product-name'>
                             {{#each products}}
-                            <option>{{name}}</option>
+                            <option value = '{{id}}' >{{name}}</option>
                             {{/each}}
                         </select>
                     </td>
-                    <td><input type = "textbox" class = "form-control"></td>
-                    <td><input type = "textbox" class = "form-control" value = "00.00"></td>
+                    <td><input type = "textbox" class = "form-control product-serial"></td>
+                    <td><input type = "textbox" class = "form-control product-price" value = "00.00"></td>
                 </tr>
             </tbody>
         </table>
