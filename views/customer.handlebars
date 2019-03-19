@@ -48,7 +48,12 @@
             </thead>
             <tbody>
                 {{#each products}}
-                <tr><td>{{name}}</td><td>${{selling_price}}</td><td class = "product-qty" >{{#if quantity}} {{quantity}} {{else}} 0 {{/if}} </td><td><input type = "textbox" class = "productnum" data-priceval = {{selling_price}} id = "product{{id}}"value = "0"></td></tr>
+                <tr>
+                    <td>{{name}}</td>
+                    <td>${{selling_price}}</td>
+                    <td class = "product-qty" >{{#if quantity}} {{quantity}} {{else}} 0 {{/if}} </td>
+                    <td><input type = "textbox" class = "productnum" data-priceval = {{selling_price}} id = "product{{id}}"value = "0"></td>
+                </tr>
                 {{/each}}
             </tbody>
         </table>
@@ -64,7 +69,9 @@
             <div class = "form-group mt-3">                 
                 <button id = "order" class = "btn btn-primary" onclick = "orderproducts()">Order selected products</button>
             </div>
-            <h4>OPTIONAL: enter your info:</h4>
+            <div class = "mt-5">
+                <h4>OPTIONAL: enter your info:</h4>
+            </div>
             <div id = "customer-info" class = "row">
                     <div class = "col-3">
                         <label for = "fname">First name:</label>
@@ -78,6 +85,22 @@
                         <label for = "pnumber">Phone number:</label>
                         <input type = "textbox" class = "form-control" id = "pnumber">
                     </div>
+            </div>
+            <div class = "mt-5">
+                <h5>Returning customer? Identify yourself!</h5>
+            </div>
+            <div id = "returning-customer" class = "row">
+                <div class = "form-group col-3">
+                    <input type = "checkbox" id = "customer-return">
+                    <label for = "customer-return">I am a returning customer</label>
+                </div>
+                <div class = "form-group col-6">
+                    <select id = "customer-select" class = "form-control">
+                        {{#each customers}}
+                        <option value = "{{id}}">{{fname}} {{lname}}</option>
+                        {{/each}}
+                    </select>
+                </div>
             </div>
         </div>
     </div>

@@ -31,6 +31,15 @@ module.exports = function(){
         }
     }
 
+    function errorcheck(error,res){
+        if(error.errno == 1062){
+            duperror = true;
+        }
+        else{
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+    }
 
     io.on('connection', function(socket){
        socket.on('applyf',function(content){
@@ -53,15 +62,6 @@ module.exports = function(){
        });
     });
 
-    function errorcheck(error,res){
-        if(error.errno == 1062){
-            duperror = true;
-        }
-        else{
-            res.write(JSON.stringify(error));
-            res.end();
-        }
-    }
     router.get('/', function(req, res){
             res.redirect('/employee/customers');
             });

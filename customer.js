@@ -20,6 +20,25 @@ module.exports = function(){
     var doOrder = false;
     var orderInfo = {};
 
+    var duperror = false;
+    
+    function dupecheck(context){
+        if(duperror){
+            context.jsscripts.push("duplicate.js");
+            duperror = false;
+        }
+    }
+
+    function errorcheck(error,res){
+        if(error.errno == 1062){
+            duperror = true;
+        }
+        else{
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+    }
+
     io.on('connection', function(socket){
         socket.on('products-ordered',function(content){
             doOrder = true;    
@@ -37,8 +56,7 @@ module.exports = function(){
         var q = YOTE.queryText6;
         mysql.pool.query(q, function(error, results, fields){
                 if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                    errorcheck(error,res);
                 }
                 context.cat = results;
                 var j;
@@ -62,13 +80,10 @@ module.exports = function(){
 
             mysql.pool.query(query, inserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
-                else{
-                    complete();
-                    // Success! But we do nothing.
-                }
+                complete();
+                // Success! But we do nothing.
             });
         }
     }
@@ -78,12 +93,9 @@ module.exports = function(){
     function addOrder(orderInfo, res, query, inserts, mysql, complete){
         mysql.pool.query(query, inserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
-                else{
-                    add_inventory(orderInfo, res, results, mysql, complete);
-                }
+                add_inventory(orderInfo, res, results, mysql, complete);
         });
     }
 
@@ -112,13 +124,10 @@ module.exports = function(){
             var cquery = YOTE.queryTextCreateCustomer;
             mysql.pool.query(cquery, cinserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
-                else{
-                    inserts = [results.insertId, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
-                    addOrder(orderInfo, res, query, inserts, mysql, complete);
-                }
+                inserts = [results.insertId, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
+                addOrder(orderInfo, res, query, inserts, mysql, complete);
             });
 
 
@@ -138,8 +147,7 @@ module.exports = function(){
         var q = YOTE.queryText6;
         mysql.pool.query(q, function(error, results, fields){
                 if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                    errorcheck(error,res);
                 }
                 context.cat = results;
                 var i;
@@ -158,13 +166,22 @@ module.exports = function(){
     }
 
 
+    function getCustomers(res, mysql, context, complete){
+        var q = YOTE.queryTextGetCustomers;
+        mysql.pool.query(q, function(error, results, fields){
+                if(error){
+                    errorcheck(error,res);
+                }
+                context.customers = results;
+                complete();
+                });
+    }
 
     function getProducts(res, mysql, context, complete){
         var q = YOTE.getProducts;
         mysql.pool.query(q, function(error, results, fields){
                 if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                    errorcheck(error,res);
                 }
                 context.products = results;
                 context.maxval = "00.00";
@@ -219,8 +236,7 @@ module.exports = function(){
       }
       mysql.pool.query(query, inserts, function(error, results, fields){
             if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                errorcheck(error,res);
             }
             context.products = results;
             complete();
@@ -231,7 +247,7 @@ module.exports = function(){
     router.get('/', function(req, res){
             var context = {};
             var qs = 0;
-            maxval = 2;
+            maxval = 3;
             var mysql = req.app.get('mysql');
             context.jsscripts = ["sort.js", "filter.js", "order.js"];            
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
@@ -245,20 +261,24 @@ module.exports = function(){
                     if(comps >= maxvalue){
                         getCategories(res, mysql, context, complete);
                         getProducts(res, mysql, context, complete);
+                        getCustomers(res, mysql, context, complete);
                     }
                 }
             }
             else if(doFilter){
                 getCategoriesSpecial(modRes, res, mysql, context, complete);
                 getProductsFiltered(modRes, res, mysql, context, complete);
+                getCustomers(res, mysql, context, complete);
             }
             else{
                 getCategories(res, mysql, context, complete);
                 getProducts(res, mysql, context, complete);
+                getCustomers(res, mysql, context, complete);
             }
             function complete(){
                 qs = qs + 1;
                 if(qs >= maxval){
+                    dupecheck(context);
                     res.render('customer', context);
                     doFilter = false;
                     doOrder = false;
