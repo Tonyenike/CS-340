@@ -12,9 +12,9 @@
                 <tr>
                     <td><input type = "textbox" id = "supplier-name" class = "form-control"></td>
                     <td><input type = "textbox" id = "shipper-name" class = "form-control"></td>
-                    <td><select class = "form-control">
-                            <option>Intact</option>
-                            <option>Damaged</option>
+                    <td><select id = 'shipment-status' class = "form-control">
+                            <option value = 'false' >Intact</option>
+                            <option value = 'true'  >Damaged</option>
                     </select></td>
                 </tr>
             </tbody>
@@ -44,6 +44,7 @@
         <button onclick = "addNewRow()" class = "btn btn-secondary">Add another item received</button>
         <button onclick = "removeRow()" class = "btn btn-secondary">Remove the bottom item</button>
         <button onclick = "addNewShipment()" class = "btn btn-primary">Add this shipment</button>
+        <a href = '/employee/shipments' class = "btn btn-warning">Go back</a>
     </div>
 
 

@@ -26,7 +26,7 @@ this.modifyTransactionItems = "UPDATE inventory_item SET transactionID = NULL WH
 
 
 // get all information for all products
-this.queryText4 = "SELECT * FROM product P " +
+this.getProducts = "SELECT * FROM product P " +
                     "LEFT JOIN (SELECT P.id AS piddle, COUNT(I.id) AS quantity FROM product P INNER JOIN inventory_item I ON I.pid = P.id " +
                     "WHERE I.transactionID IS NULL GROUP BY P.id) AS quantities ON quantities.piddle = P.id"; 
 
@@ -61,13 +61,13 @@ this.queryText13 = "INSERT INTO `customer` (`fname`, `lname`, `phonenumber`) VAL
 this.queryText14 = "INSERT INTO `transaction` (`customer`, `date`, `payment_method`, `payment_total`) VALUES (?, ?, ?, ?)";
 
 // add a new shipment
-this.queryText15 = "INSERT INTO `shipment` (`supplier_name`, `shipping_service_name`, `date`, `damaged`) VALUES (:supplierInput, :serviceInput, :dateInput, :damagedInput)";
+this.addNewShipment = "INSERT INTO `shipment` (`supplier_name`, `shipping_service_name`, `date`, `damaged`) VALUES (?, ?, ?, ?)";
 
 // add a new product
 this.queryText16 = "INSERT INTO product (name, selling_price) VALUES (?, ?)";
 
 // add a new item
-this.queryText17 = "INSERT INTO `inventory_item` (`pid`, `serial`, `buying_price`, `shipmentID`, `transactionID`) VALUES (:pidInput, :serialInput, :priceInput, :shipmentInput, :transactionInput)";
+this.insertInventory = "INSERT INTO `inventory_item` (`pid`, `serial`, `buying_price`, `shipmentID`, `transactionID`) VALUES (?, ?, ?, ?, NULL)";
 
 // add a new category
 this.queryText18 = "INSERT INTO `category` (`name`) VALUES (:nameInput)";

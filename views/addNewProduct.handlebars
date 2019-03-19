@@ -1,0 +1,21 @@
+{{>navbar}}
+
+    <div class = "container-fluid mb-5">
+        <h2> New product line </h2>
+        <table id = "shipments" class = "table table-sm table-striped table-bordered" >
+            <thead class = "thead-dark" >
+                <th scope = "col" >Product name</th>
+                <th scope = "col" >Product selling price</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type = "textbox" id = "product-name" class = "form-control"></td>
+                    <td><input type = "textbox" id = "product-price" class = "form-control" value = '00.00'></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button onclick = "addNewProduct()" class = "btn btn-primary">Add this product line</button>
+        <a href = '/employee/products' class = "btn btn-warning">Go back</a>
+    </div>
+

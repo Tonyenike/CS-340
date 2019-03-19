@@ -160,7 +160,7 @@ module.exports = function(){
 
 
     function getProducts(res, mysql, context, complete){
-        var q = YOTE.queryText4;
+        var q = YOTE.getProducts;
         mysql.pool.query(q, function(error, results, fields){
                 if(error){
                 res.write(JSON.stringify(error));

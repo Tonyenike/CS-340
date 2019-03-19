@@ -1,3 +1,5 @@
+var socket = io();
+
 function addNewShipment(){
 
 
@@ -6,6 +8,11 @@ function addNewShipment(){
 
     var supplierName = document.getElementById('supplier-name').value;
     var shipperName = document.getElementById('shipper-name').value;
+    var productStatus = document.getElementById('shipment-status').value;
+    var statusBool = false;
+    if (productStatus === 'true')
+        statusBool = true
+
     if(supplierName === ""){
         alert("Please provide a supplier name.");
         return;
@@ -19,10 +26,13 @@ function addNewShipment(){
     var serials = document.getElementsByClassName('product-serial');
     var products = document.getElementsByClassName('product-name');
 
+    var price = new Array(prices.length);
+    var serial = new Array(prices.length);
+    var product = new Array(prices.length);
+
     var i
     for(i = 0; i < prices.length; i++){
        
-        console.log(products[i].value); 
         if (parseFloat(prices[i].value) > 0){} 
         else{
             alert("Wholesale amount is invalid");
@@ -45,9 +55,24 @@ function addNewShipment(){
             alert("Serial number is invalid -- it must be greater than 0");
             return;
         }
+        price[i] = parseFloat(+prices[i].value);
+        serial[i] = parseInt(+serials[i].value);
+        product[i] = parseInt(+products[i].value);
+
     }
 
-    alert("This button doesn't work yet!")
+    // alert("This button doesn't work yet!")
 
+    socket.emit('addShipment', {
+                                supplierName: supplierName,
+                                shipperName: shipperName,
+                                productStatus: statusBool, 
+                                price: price,
+                                serial: serial,
+                                product: product
+                                });
+
+
+    setTimeout(function(){window.location.replace("/employee/shipments");}, 200);
 
 }

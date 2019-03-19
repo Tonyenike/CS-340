@@ -8,3 +8,7 @@ Oregon State University
 Ben Martin ~ ONID: martinb3
 
 Nathan Crozier ~ ONID: croziena
+
+## Directions for use
+
+Connect to the OSU VPN, the go to `flip1.engr.oregonstate.edu:4200`

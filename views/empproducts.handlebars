@@ -1,0 +1,23 @@
+{{>navbar}}
+
+    <div class = "container-fluid mb-5">
+        <table id = "products" class = "table table-sm table-striped table-bordered" >
+            <thead class = "thead-dark" >
+                <th scope = "col" onclick = "sortTable('products', 2, 0)" >Product ID</th>
+                <th scope = "col" onclick = "sortTable('products', 1, 0)" >Product name</th>
+                <th scope = "col" onclick = "sortTable('products', 3, 1)" >Cost</th>
+                <th scope = "col" onclick = "sortTable('products', 2, 2)" >Quantity</th>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>${{selling_price}}</td>
+                    <td class = "product-qty" >{{#if quantity}} {{quantity}} {{else}} 0 {{/if}} </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <a href = "/employee/addNewProduct" class = "btn btn-primary rounded-circle">+</a>
+    </div>

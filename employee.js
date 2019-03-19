@@ -16,6 +16,10 @@ module.exports = function(){
 
     var deleteItems = false;
     var deleteItemsContent = {};
+    var newShipment = false;
+    var shipmentContent = {};
+    var newProduct = false;
+    var productContent = {};
 
     io.on('connection', function(socket){
        socket.on('applyf',function(content){
@@ -23,6 +27,14 @@ module.exports = function(){
        socket.on('deleteItems',function(content){
             deleteItems = true;
             deleteItemsContent = content;
+       });
+       socket.on('addShipment', function(content){
+            newShipment = true;
+            shipmentContent = content;
+       });
+       socket.on('addProduct', function(content){
+            newProduct = true;
+            productContent = content;
        });
     });
 
@@ -50,6 +62,14 @@ module.exports = function(){
                 context.products = results;
                 res.render('addNewShipment', context);
             });
+
+    });
+
+    router.get('/addNewProduct', function(req, res){
+            var context = {};
+            context.jsscripts=["products.js"];
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            res.render('addNewProduct', context);
 
     });
 
@@ -125,6 +145,60 @@ module.exports = function(){
         }
     }
 
+    function addProductsToShipment(req, res, shipmentID, complete){
+        var mysql = req.app.get('mysql');
+        var query = queries.insertInventory;
+        var i
+        for(i = 0; i < shipmentContent.price.length; i++){
+
+            inserts = [shipmentContent.product[i], shipmentContent.serial[i], shipmentContent.price[i], shipmentID];
+            mysql.pool.query(query, inserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                complete();
+            });
+        }
+    }
+
+    function addShipmentStuff(req, res){
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        var dateval = yyyy + '-' + mm + '-' + dd;
+        var comps = 0;
+        var maxval = shipmentContent.price.length;
+        var mysql = req.app.get('mysql');
+        var query1 = queries.addNewShipment;
+        var inserts1 = [shipmentContent.supplierName, shipmentContent.shipperName, dateval, shipmentContent.productStatus];
+        mysql.pool.query(query1, inserts1, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            var shipmentID = results.insertId;
+            addProductsToShipment(req, res, shipmentID, complete);
+        });
+        function complete(){
+            comps = comps + 1;
+            if(comps >= maxval){
+                newShipment = false;
+                renderShipments(req, res);
+            }
+        }
+    }
+
     router.get('/transactions', function(req, res){
         if(deleteItems){
             deleteTransactionStuff(req, res);
@@ -133,8 +207,41 @@ module.exports = function(){
             renderTransactions(req, res);
         }
     });
-    
-    router.get('/shipments', function(req, res){
+
+    router.get('/products', function(req, res){
+        if(newProduct){
+                var mysql = req.app.get('mysql');
+                var query = queries.queryText16;
+                var inserts = [productContent.productName, productContent.productPrice];
+                mysql.pool.query(query, inserts, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                newProduct = false;
+                proceed();
+            });
+        }
+        else{proceed();}
+        function proceed(){
+            var context = {};
+            var mysql = req.app.get('mysql');
+            var query = queries.getProducts;
+            context.jsscripts=["sort.js"];
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            mysql.pool.query(query, function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.products = results;
+                res.render('empproducts', context);
+            });
+        }
+    });
+
+
+    function renderShipments(req, res){
             var context = {};
             var mysql = req.app.get('mysql');
             var query = queries.queryTextGetShipments;
@@ -152,6 +259,16 @@ module.exports = function(){
             function complete(){
                 res.render('empshipments', context);
             }
+    }
+
+ 
+    router.get('/shipments', function(req, res){
+        if(newShipment){
+            addShipmentStuff(req, res);
+        }
+        else{
+            renderShipments(req, res);
+        }
     });
 
     router.get('/inspecttransaction/:id', function(req, res){
