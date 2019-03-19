@@ -1,0 +1,19 @@
+{{>navbar}}
+
+    <div class = "container-fluid mb-5">
+        <table id = "categories" class = "table table-sm table-striped table-bordered" >
+            <thead class = "thead-dark" >
+                <th scope = "col" onclick = "sortTable('categories', 2, 0)" >Category ID</th>
+                <th scope = "col" onclick = "sortTable('categories', 1, 0)" >Category name</th>
+            </thead>
+            <tbody>
+                {{#each categories}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <a href = "/employee/addNewCategory" class = "btn btn-primary rounded-circle">+</a>
+    </div>

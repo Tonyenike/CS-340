@@ -20,6 +20,17 @@ module.exports = function(){
     var shipmentContent = {};
     var newProduct = false;
     var productContent = {};
+    var newCategory = false;
+    var categoryContent = {};
+    var duperror = false;
+    
+    function dupecheck(context){
+        if(duperror){
+            context.jsscripts.push("duplicate.js");
+            duperror = false;
+        }
+    }
+
 
     io.on('connection', function(socket){
        socket.on('applyf',function(content){
@@ -36,8 +47,21 @@ module.exports = function(){
             newProduct = true;
             productContent = content;
        });
+       socket.on('addCategory', function(content){
+            newCategory = true;
+            categoryContent = content;
+       });
     });
 
+    function errorcheck(error,res){
+        if(error.errno == 1062){
+            duperror = true;
+        }
+        else{
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+    }
     router.get('/', function(req, res){
             res.redirect('/employee/customers');
             });
@@ -56,10 +80,10 @@ module.exports = function(){
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
             mysql.pool.query(query, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 context.products = results;
+                dupecheck(context);
                 res.render('addNewShipment', context);
             });
 
@@ -69,8 +93,17 @@ module.exports = function(){
             var context = {};
             context.jsscripts=["products.js"];
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            dupecheck(context);
             res.render('addNewProduct', context);
 
+    });
+
+    router.get('/addNewCategory', function(req, res){
+            var context = {};
+            context.jsscripts=["cats.js"];
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            dupecheck(context);
+            res.render('addNewCategory', context);
     });
 
     router.get('/customers', function(req, res){
@@ -81,14 +114,14 @@ module.exports = function(){
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
             mysql.pool.query(query, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 context.customers = results;
                 complete();
             });
 
             function complete(){
+                dupecheck(context);
                 res.render('empcustomers', context);
             }
     });
@@ -101,10 +134,10 @@ module.exports = function(){
         context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
         mysql.pool.query(query, function(error, results, fields){
             if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                errorcheck(error,res);
             }
             context.transactions = results;
+            dupecheck(context);
             res.render('emptransactions', context);
         });
     }
@@ -124,15 +157,13 @@ module.exports = function(){
         }
         mysql.pool.query(query1, inserts1, function(error, results, fields){
             if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                errorcheck(error,res);
             }
             complete();
         });
         mysql.pool.query(query2, inserts2, function(error, results, fields){
             if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                errorcheck(error,res);
             }
             complete();
         });
@@ -154,8 +185,7 @@ module.exports = function(){
             inserts = [shipmentContent.product[i], shipmentContent.serial[i], shipmentContent.price[i], shipmentID];
             mysql.pool.query(query, inserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 complete();
             });
@@ -184,8 +214,7 @@ module.exports = function(){
         var inserts1 = [shipmentContent.supplierName, shipmentContent.shipperName, dateval, shipmentContent.productStatus];
         mysql.pool.query(query1, inserts1, function(error, results, fields){
             if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                errorcheck(error,res);
             }
             var shipmentID = results.insertId;
             addProductsToShipment(req, res, shipmentID, complete);
@@ -208,6 +237,41 @@ module.exports = function(){
         }
     });
 
+    router.get('/categories', function(req, res){
+        if(newCategory){
+                var mysql = req.app.get('mysql');
+                var query = queries.newCategory;
+                var inserts = [categoryContent.categoryName];
+                mysql.pool.query(query, inserts, function(error, results, fields){
+                newCategory = false;
+                if(error){
+                    errorcheck(error,res);
+                }
+                proceed();
+            });
+        }
+        else{proceed();}
+        function proceed(){
+            var context = {};
+            var mysql = req.app.get('mysql');
+            var query = queries.queryText6;
+            context.jsscripts=["sort.js"];
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+            mysql.pool.query(query, function(error, results, fields){
+                if(error){
+                    errorcheck(error,res);
+                }
+                context.categories = results;
+                dupecheck(context);
+                res.render('empcategories', context);
+            });
+        }
+    });
+
+
+
+
+
     router.get('/products', function(req, res){
         if(newProduct){
                 var mysql = req.app.get('mysql');
@@ -215,8 +279,7 @@ module.exports = function(){
                 var inserts = [productContent.productName, productContent.productPrice];
                 mysql.pool.query(query, inserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 newProduct = false;
                 proceed();
@@ -231,10 +294,10 @@ module.exports = function(){
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
             mysql.pool.query(query, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 context.products = results;
+                dupecheck(context);
                 res.render('empproducts', context);
             });
         }
@@ -249,14 +312,14 @@ module.exports = function(){
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
             mysql.pool.query(query, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 context.shipments = results;
                 complete();
             });
 
             function complete(){
+                dupecheck(context);
                 res.render('empshipments', context);
             }
     }
@@ -283,16 +346,14 @@ module.exports = function(){
             
             mysql.pool.query(query1, inserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 context.items = results;
                 complete();
             });
             mysql.pool.query(query2, inserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 context.transactions = results;
                 complete();
@@ -303,6 +364,7 @@ module.exports = function(){
             function complete(){
                 completeCounter = completeCounter + 1;
                 if(completeCounter >= 2)
+                    dupecheck(context);
                     res.render('inspecttransaction', context);
             }
 
@@ -316,8 +378,7 @@ module.exports = function(){
             
         mysql.pool.query(query, inserts, function(error, results, fields){
             if(error){
-                res.write(JSON.stringify(error));
-                res.end();
+                errorcheck(error,res);
             }
             res.redirect('/employee/transactions');
         });
@@ -335,16 +396,14 @@ module.exports = function(){
             context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
             mysql.pool.query(query1, inserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 context.items = results;
                 complete();
             });
             mysql.pool.query(query2, inserts, function(error, results, fields){
                 if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    errorcheck(error,res);
                 }
                 context.shipments = results;
                 complete();
@@ -355,6 +414,7 @@ module.exports = function(){
             function complete(){
                 completeCounter = completeCounter + 1;
                 if(completeCounter >= 2)
+                    dupecheck(context);
                     res.render('inspectshipment', context);
             }
 

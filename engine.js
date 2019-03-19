@@ -70,7 +70,7 @@ this.queryText16 = "INSERT INTO product (name, selling_price) VALUES (?, ?)";
 this.insertInventory = "INSERT INTO `inventory_item` (`pid`, `serial`, `buying_price`, `shipmentID`, `transactionID`) VALUES (?, ?, ?, ?, NULL)";
 
 // add a new category
-this.queryText18 = "INSERT INTO `category` (`name`) VALUES (:nameInput)";
+this.newCategory = "INSERT INTO `category` (`name`) VALUES (?)";
 
 // add a new entry to the product category table
 this.queryText19 = "INSERT INTO `product_category` (`cid`, `pid`) VALUES (:cidInput, :pidInput)";
