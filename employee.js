@@ -416,7 +416,6 @@ module.exports = function(){
             function complete(){
                 completeCounter = completeCounter + 1;
                 if(completeCounter >= 2)
-                    dupecheck(context);
                     res.render('inspectshipment', context);
             }
 
