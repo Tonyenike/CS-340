@@ -8,6 +8,10 @@ function orderproducts(){
     var elements = document.getElementsByClassName('productnum');
     var quantities = document.getElementsByClassName('product-qty');
     
+
+    var returnbool = document.getElementById('customer-return').checked;
+    var returnval = parseInt(+document.getElementById('customer-select').value);
+
     // payment method element in the HTML page 
     var paymentMethod = document.getElementById('payment-method').value;
 
@@ -99,6 +103,8 @@ function orderproducts(){
                                      paymentTotal: pricetotal.toFixed(2), 
                                      productID: productId, 
                                      productQTY: productQty,
+                                     returnbool: returnbool,
+                                     returnval: returnval,
                                      customerbool: customerbool,
                                      fname: customerfname,
                                      lname: customerlname,

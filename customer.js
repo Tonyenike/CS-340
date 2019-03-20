@@ -117,22 +117,29 @@ module.exports = function(){
 
         var dateval = yyyy + '-' + mm + '-' + dd;
         var inserts = new Array(4);
+        if(orderInfo.returnbool){
+            inserts = [orderInfo.returnval, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
+            addOrder(orderInfo, res, query, inserts, mysql, complete);
+        }
+        else if(orderInfo.customerbool){
 
-        if(orderInfo.customerbool){
-
-            var cinserts = [orderInfo.fname, orderInfo.lname, toString(orderInfo.pnumber)];
+            var cinserts = [orderInfo.fname, orderInfo.lname, orderInfo.pnumber];
             var cquery = YOTE.queryTextCreateCustomer;
             mysql.pool.query(cquery, cinserts, function(error, results, fields){
                 if(error){
                     errorcheck(error,res);
                 }
-                inserts = [results.insertId, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
-                addOrder(orderInfo, res, query, inserts, mysql, complete);
+                if(duperror){
+                    var i
+                    for(i = 0; i < orderInfo.productQTY.length; i++){
+                        complete();
+                    }
+                }
+                else{
+                    inserts = [results.insertId, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
+                    addOrder(orderInfo, res, query, inserts, mysql, complete);
+                }
             });
-
-
-
-
         }
         else{
             inserts = [null, dateval, orderInfo.paymentMethod, orderInfo.paymentTotal];
