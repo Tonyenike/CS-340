@@ -82,8 +82,8 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
-                context.products = results;
                 dupecheck(context);
+                context.products = results;
                 res.render('addNewShipment', context);
             });
 
@@ -116,12 +116,12 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
+                dupecheck(context);
                 context.customers = results;
                 complete();
             });
 
             function complete(){
-                dupecheck(context);
                 res.render('empcustomers', context);
             }
     });
@@ -136,8 +136,8 @@ module.exports = function(){
             if(error){
                 errorcheck(error,res);
             }
-            context.transactions = results;
             dupecheck(context);
+            context.transactions = results;
             res.render('emptransactions', context);
         });
     }
@@ -261,8 +261,8 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
-                context.categories = results;
                 dupecheck(context);
+                context.categories = results;
                 res.render('empcategories', context);
             });
         }
@@ -296,8 +296,8 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
-                context.products = results;
                 dupecheck(context);
+                context.products = results;
                 res.render('empproducts', context);
             });
         }
@@ -314,12 +314,12 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
+                dupecheck(context);
                 context.shipments = results;
                 complete();
             });
 
             function complete(){
-                dupecheck(context);
                 res.render('empshipments', context);
             }
     }
@@ -348,6 +348,7 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
+                dupecheck(context);
                 context.items = results;
                 complete();
             });
@@ -355,6 +356,7 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
+                dupecheck(context);
                 context.transactions = results;
                 complete();
             });
@@ -364,10 +366,8 @@ module.exports = function(){
             function complete(){
                 completeCounter = completeCounter + 1;
                 if(completeCounter >= 2)
-                    dupecheck(context);
                     res.render('inspecttransaction', context);
             }
-
     });
 
     router.get('/deletetransaction/:id', function(req, res){
@@ -398,6 +398,7 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
+                dupecheck(context);
                 context.items = results;
                 complete();
             });
@@ -405,6 +406,7 @@ module.exports = function(){
                 if(error){
                     errorcheck(error,res);
                 }
+                dupecheck(context);
                 context.shipments = results;
                 complete();
             });
