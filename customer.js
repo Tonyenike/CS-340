@@ -251,7 +251,7 @@ module.exports = function(){
     }
 
 
-    router.get('/', function(req, res){
+    router.get('/browse', function(req, res){
             var context = {};
             var qs = 0;
             maxval = 3;
@@ -294,5 +294,19 @@ module.exports = function(){
             }
     });
     
+    router.get('/', function(req, res){
+        res.redirect('/customer/browse');
+    }); 
+
+    router.get('/info', function(req, res){
+        
+            var context = {};
+            context.jsscripts = ["customers.js"];            
+            context.cssPage=["https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"];
+
+            res.render('custinfo.handlebars', context);
+
+    });   
+
     return router;
 }();
